@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><title>くみあぷ (PairGen) – 高度な使い方</title>
+<style>
+  body{font-family:Roboto,"Segoe UI","Helvetica Neue",Arial,sans-serif;max-width:720px;margin:0 auto;padding:24px;color:#1a1a1a;line-height:1.75}
+  h1{font-size:26px;font-weight:700;border-bottom:2px solid #e0e0e0;padding-bottom:10px}
+  h2{font-size:18px;font-weight:600;margin-top:36px;color:#6650a4}
+  h3{font-size:15px;font-weight:600;margin-top:24px}
+  code{background:#f0f0f0;padding:1px 6px;border-radius:4px;font-size:14px}
+  table{border-collapse:collapse;width:100%;margin:12px 0}
+  th,td{border:1px solid #ddd;padding:8px 12px;text-align:left}
+  th{background:#f5f5f5;font-weight:600}
+  .ss img{max-width:100%;border-radius:8px;border:1px solid #ddd;display:block;margin:16px auto}
+  .tip{background:#e8f5e9;border-left:4px solid #4caf50;padding:10px 14px;border-radius:4px;font-size:14px;margin-top:8px}
+  .note{background:#fff8e1;border-left:4px solid #ffc107;padding:10px 14px;border-radius:4px;font-size:14px;margin-top:8px}
+  .back-link{display:inline-block;margin-bottom:8px;font-size:14px}
+</style>
+</head>
+<body>
+
+<p class="back-link"><a href="home.html">← ホームに戻る</a></p>
+<h1>高度な使い方</h1>
+
+<h2>1. レベル分け</h2>
+<p>プレイヤーとコートにそれぞれレベルを設定することで、同じレベルのプレイヤーを特定のコートに割り当てられます。</p>
+
+<h3>プレイヤーのレベル</h3>
+<p>プレイヤータブのレベルバッジ（または編集画面の <strong>レベル</strong>）をタップするたびに 1・2・3 と切り替わります。</p>
+<table>
+  <tr><th>レベル</th><th>色</th><th>用途例</th></tr>
+  <tr><td>1</td><td>赤</td><td>初級</td></tr>
+  <tr><td>2</td><td>緑</td><td>中級</td></tr>
+  <tr><td>3</td><td>青</td><td>上級</td></tr>
+</table>
+
+<h3>コートのレベルと「レベル固定」</h3>
+<p>コートタブのコート編集画面で <strong>レベル</strong> を設定し、<strong>レベル固定</strong> をオンにすると、そのレベルのプレイヤーのみが割り当てられるコートになります。</p>
+<ul>
+  <li><strong>レベル固定</strong>（オン） — 設定したレベルのプレイヤーのみ割り当てられます</li>
+  <li><strong>レベルフリー</strong>（オフ） — レベルに関係なくすべてのプレイヤーが対象になります</li>
+</ul>
+<div class="ss"><img src="images/advanced-level-split.png" alt="レベル分けの例（コート一覧、Aが赤=レベル1、Bが緑=レベル2）"></div>
+
+<h2>2. ミックスダブルス（レベル 1&amp;2）</h2>
+<p>コートのレベルバッジを繰り返しタップして <strong>1&amp;2</strong> に設定すると、レベル1のプレイヤーとレベル2のプレイヤーを混合したペアが組まれます。男女混合や、レベル差のある練習会でご活用ください。</p>
+<div class="ss"><img src="images/advanced-mix.png" alt="1&amp;2 コートの割り当て例"></div>
+
+<h2>3. フリーモード（動的コート割り当て）</h2>
+<p>ゲームタブ上部のモードセレクターで <strong>フリー</strong> を選ぶと、フリーモードに切り替わります（コートが1面のみの場合は切り替えできません。2面以上を有効にしてください）。</p>
+<p>フリーモードでは、コートごとに試合の終了・再開を個別に管理できます。空いたコートだけに次の組み合わせが生成されるため、試合時間がバラバラでも効率よく進行できます。</p>
+
+<h3>フリーモードの操作</h3>
+<ul>
+  <li>試合が終わったら、そのコートの行の右端にあるチェックアイコンをタップして<strong>終了</strong>状態にします</li>
+  <li><code>組み合わせ生成</code> で空きコートのみ次の組み合わせが生成されます</li>
+  <li>コートの背景は黄色で表示され、直近の生成で更新されたコートにはグレーの外枠が付きます。終了済みのコートはグレー表示になります</li>
+</ul>
+<div class="ss"><img src="images/advanced-free-mode.png" alt="フリーモードのコート一覧"></div>
+<div class="tip">💡 コート一覧での終了/再開操作と、スコア入力画面の <strong>終了</strong> トグルは連動しています。どちらか一方を操作すればもう一方にも反映されます。</div>
+
+<h2>4. デフォルト欠席</h2>
+<p>毎回欠席しがちなメンバーのプレイヤー編集画面で <code>デフォルト欠席</code> をオンにしてメンバー保存しておくと、次にメンバーを読み込んだ際に自動的に休憩状態でリストに追加されます。当日参加する場合はトグルをオンに切り替えてください。</p>
+
+<h2>5. セッション共有（Android共有シート）</h2>
+<p>前半は複数レベルを一緒に回してから、後半はコートごとにレベル分けして各コートで個別に進行したい場合、前半の組み合わせ情報を維持したまま他の端末にセッションを共有し、後半はコートごとに別々の端末で進行を分担できます。また、複数の運営者がそれぞれ別々にプレイヤーを登録した状態で合流したい場合にも、現在のプレイヤーリストと組み合わせ結果を共有できます。</p>
+
+<h3>送信側の操作</h3>
+<ul>
+  <li>ゲームタブ左上の「⋮」→ <strong>セッションを共有</strong> をタップ</li>
+  <li>Android標準の共有シートが開くので、LINEやメール、Bluetoothなど好きな方法で相手に送信</li>
+</ul>
+
+<h3>受信側の操作</h3>
+<ul>
+  <li>共有されたファイルを開き、共有先アプリの一覧から <strong>くみあぷ</strong>（PairGen）を選択</li>
+  <li>くみあぷが起動し、確認ダイアログが表示されるので <strong>置き換え</strong> をタップすると取り込まれます</li>
+</ul>
+
+<div class="tip">💡 取り込み後、現在のプレイヤーリストと組み合わせは送信側のデータに<strong>置き換わります</strong>（送信側にないプレイヤーもメンバーDBには残ります）。同じ名前で所属グループが1つ以上重なるプレイヤーは同一人物とみなして統合されます。</div>
+
+<h2>6. ピン留め（優先出場指定）</h2>
+<p>通常、組み合わせは待ち回数（連続して試合に出られなかった回数）が多いプレイヤーから優先的に選ばれます。特定のプレイヤーを待ち回数に関係なく次の組み合わせに必ず入れたい場合は、プレイヤータブの丸印をタップして<strong>ピン留め</strong>してください。</p>
+<ul>
+  <li>丸印をタップ → ピンのアイコンに変わり、次の組み合わせで最優先に選ばれる</li>
+  <li>ピンのアイコンを再度タップ → ピン留め解除、丸印表示に戻る</li>
+  <li>固定ペアがいる場合、ピン留め・解除はペア相手にも自動的に連動する</li>
+</ul>
+<div class="tip">💡 ピン留めは一時的な指定で、データベースには保存されません。飛び入り参加者を次の試合に必ず入れたい場合や、特定の組み合わせを優先的に成立させたい場合にご活用ください。</div>
+
+<h2>7. 連続試合数とコート数の関係</h2>
+<p>1コートに対してプレイヤーが5人の場合、毎回必ず1人が休憩に回ります。全員を均等に休ませようとすると、休憩と休憩の間隔は平均5ターンになるため、<strong>最大で4連続試合になるのは仕様上避けられません</strong>（コート数に対してプレイヤーが1人多い状況では常に起こります）。これは特定の人だけが不公平に連続しているのではなく、全員が均等に「4連続→休憩1回」を繰り返す、数学的に最も公平な配分です。</p>
+<div class="note">⚠️ 連続試合数をこれ以上短くしたい場合は、コートを増やすかプレイヤー数を調整する必要があります。同じコート数・人数のままではどう調整しても誰かが同程度連続することになります。</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><title>くみあぷ (PairGen) – 更新履歴</title>
+<style>
+  body{font-family:Roboto,"Segoe UI","Helvetica Neue",Arial,sans-serif;max-width:720px;margin:0 auto;padding:24px;color:#1a1a1a;line-height:1.75}
+  h1{font-size:26px;font-weight:700;border-bottom:2px solid #e0e0e0;padding-bottom:10px}
+  h2{font-size:18px;font-weight:600;margin-top:36px;color:#6650a4}
+  ul{padding-left:20px}
+  li{margin-bottom:4px}
+  .note{background:#fff8e1;border-left:4px solid #ffc107;padding:10px 14px;border-radius:4px;font-size:14px;margin-top:8px}
+  .back-link{display:inline-block;margin-bottom:8px;font-size:14px}
+</style>
+</head>
+<body>
+
+<p class="back-link"><a href="home.html">← ホームに戻る</a></p>
+<h1>更新履歴</h1>
+
+<h2>v1.2.2</h2>
+<ul>
+  <li>組み合わせ生成で、直前のラウンドと同じ2人が続けてパートナー同士になってしまうことがある不具合を修正（iOS v1.20.0 を反映）</li>
+</ul>
+
+<h2>v1.2.1</h2>
+<ul>
+  <li>組み合わせを何回か生成した後にプレイヤーを追加すると、その新しいプレイヤーが次の組み合わせで優先的に選ばれないことがある不具合を修正</li>
+  <li>同じレベルのコートが複数ある場合に、固定ペアのプレイヤーが別々のコートに分かれてしまうことがある不具合を修正</li>
+  <li>組み合わせ画面で、固定ペアの区切りを「&amp;」からプレイヤー一覧と同じ配色のハートマークに変更</li>
+  <li>プレイヤー編集画面の名前欄に、編集中の名前を一括で消去できるクリアボタンを追加</li>
+  <li>コートが1面しかない状態でフリーモードに切り替えようとした場合、アラートを表示して切り替えを防止するように変更</li>
+  <li>フリーモードの組み合わせ画面で、背景色を黄色に統一し、直近の生成で更新されたコートにはグレーの外枠を表示するように変更（終了したコートは外枠なし）</li>
+</ul>
+
+<h2>v1.2.0</h2>
+<ul>
+  <li>サーバー機能のWebページにライブスコアリングを追加。コートをタップしてスコア入力画面を開き、L/Rボタンでの得点入力・アンドゥ・サーブ交代・エンド交代・セット終了設定がブラウザから可能に</li>
+  <li>スコア画面のプレイヤー表示を枠付きラベルに統一し、サーブ方向マーカーに「サーブ」表示を追加</li>
+</ul>
+
+<h2>v1.1.0</h2>
+<ul>
+  <li>ローカルサーバーによるセッション同期機能を追加。同一Wi-Fi上の他端末のブラウザから、現在の組み合わせやプレイヤー一覧の閲覧、一部操作（組み合わせ生成・コート終了/再開・休憩トグル・レベル変更・ラウンド/フリー切替）が可能に</li>
+  <li>プレイヤーの識別・削除・永続化に関する不具合を修正：ID基準の同一性判定でグループ再読込時の衝突を解消、セッションのみの削除と完全なDB削除を区別、グループ読込後にデフォルト欠席プレイヤーを下部にソート、グループフィルタの選択状態を再起動後も保持</li>
+</ul>
+
+<h2>v1.0.3</h2>
+<ul>
+  <li>アプリアイコンをiOS版のアートワーク（バドミントンコート＋プレイヤーマーカー）に置き換え</li>
+  <li>日本語ロケールでアプリ名を「くみあぷ」と表示（英語は PairGen のまま）</li>
+  <li>常にライトテーマで表示するように変更</li>
+  <li>フリーモードのコート終了/再開状態をコートアイコンとスコア画面の両方で同期</li>
+  <li>アラート文言を改善・ローカライズ</li>
+</ul>
+
+<h2>v1.0.0</h2>
+<ul>
+  <li>iOS版 PairGen をベースに、Android（Kotlin + Jetpack Compose）へ初めて移植した初回リリース</li>
+</ul>
+<div class="note">⚠️ くみあぷ（Android版）は iOS 版 PairGen とは別アプリ・別データベースです。iOS 版で作成したデータはくみあぷには引き継がれません。</div>
+
+</body>
+</html>
