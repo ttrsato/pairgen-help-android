@@ -27,33 +27,32 @@
 <nav class="toc">
 <ul>
   <li><a href="#player-count">1. プレイヤー数を設定する</a></li>
-  <li><a href="#court-count">2. コート数を確認する</a></li>
+  <li><a href="#court-count">2. コート数を設定する</a></li>
   <li><a href="#generate">3. 組み合わせを生成する</a></li>
-  <li><a href="#reset-scores">4. 試合結果をリセットする</a></li>
+  <li><a href="#next-round">4. 次のラウンドを生成する</a></li>
 </ul>
 </nav>
 
-
-<div class="ss"><img src="images/game-overview.png" alt="空ゲーム"></div>
+<div class="ss"><img src="images/game-overview-with-add.png" alt="試合タブ・初期状態"></div>
 
 <h2 id="player-count">1. プレイヤー数を設定する</h2>
-<p><strong>プレイヤー</strong> タブを開きます。画面下部の <code>＋</code> / <code>－</code> ボタンでプレイヤー数を増減できます。</p>
-<p>初期状態では「1」「2」「3」…という番号が名前として割り当てられています。名前を変えるには、プレイヤー行をタップして編集画面を開いてください。</p>
-<p>画面上部のテキストフィールドに名前を入力して <code>追加</code> をタップすると、名前付きでプレイヤーを追加することもできます。カンマ区切りで複数名を一度に入力できます（例：<code>Alice, Bob, Carol, Dave</code>）。</p>
-<div class="ss"><img src="images/players-plusminus.png" alt="プレイヤータブの一覧"></div>
+<p><strong>試合</strong> タブの上部左側に「4 / 4人」と表示されています。この下にある <code>−</code> / <code>+</code> ボタンをタップするだけで、プレイヤー数を増減できます。</p>
+<div class="ss"><img src="images/game-players-add.png" alt="試合タブ・プレイヤー数設定"></div>
+<p>初期状態では「1」「2」「3」「4」という番号が名前として割り当てられています。詳しく名前を変えたい場合は、<strong>プレイヤー</strong> タブで編集できます。</p>
 
-<h2 id="court-count">2. コート数を確認する</h2>
-<p><strong>コート</strong> タブを開きます。画面下部の <code>＋</code> / <code>－</code> ボタンでコート数を調整してください。</p>
-<div class="ss"><img src="images/courts-list.png" alt="コートタブ"></div>
+<h2 id="court-count">2. コート数を設定する</h2>
+<p><strong>試合</strong> タブの上部右側に「1面」と表示されています。この下にある <code>−</code> / <code>+</code> ボタンをタップするだけで、コート数を増減できます。</p>
+<div class="ss"><img src="images/game-courts-add.png" alt="試合タブ・コート数設定"></div>
+<p>詳しくコート設定（名前やレベル）を変えたい場合は、<strong>コート</strong> タブで調整できます。</p>
 
 <h2 id="generate">3. 組み合わせを生成する</h2>
-<p><strong>試合</strong> タブを開いて <code>組み合わせ生成</code> ボタンをタップします。プレイヤーが各コートに自動で割り当てられます。</p>
-<div class="ss"><img src="images/game-round-main.png" alt="試合タブ・生成結果"></div>
-<p>ボタンをタップするたびに次のラウンドの組み合わせが追加されます。重複が少なくなるよう自動的に調整されます。</p>
+<p><strong>試合</strong> タブで <code>組み合わせ生成</code> ボタンをタップします。プレイヤーが各コートに自動で割り当てられます。</p>
+<div class="ss"><img src="images/game-round-main.png" alt="試合タブ・組み合わせ生成結果"></div>
+<p>各行が1つのコートの試合を示しています。左側に付いているバッジはレベルを、右側のスコアは現在のゲーム結果を表します。</p>
 
-<h2 id="reset-scores">4. 試合結果をリセットする</h2>
-<p>試合タブ右上の <code>↻</code>（リセット）アイコンをタップすると、確認アラート「ゲーム情報を削除」が表示されます。<strong>削除</strong> を選ぶと、これまでの試合結果がすべて削除されます（プレイヤー自体は削除されません）。</p>
-<div class="tip">💡 プレイヤーごと最初からやり直したい場合は、プレイヤータブの「プレイヤーのリセット」をご利用ください。</div>
+<h2 id="next-round">4. 次のラウンドを生成する</h2>
+<p>ボタンをもう一度タップすると、次のラウンドの組み合わせが追加されます。重複が少なくなるよう自動的に調整されます。スコアは前のラウンドが記録されたままになります。</p>
+<div class="tip">💡 試合タブ右上の <code>↻</code>（リセット）ボタンをタップすると、試合結果をリセットできます。</div>
 
 </body>
 </html>
