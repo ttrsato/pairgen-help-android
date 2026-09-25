@@ -8,6 +8,11 @@
   ul{padding-left:20px}
   li{margin-bottom:6px}
   .back-link{display:inline-block;margin-bottom:8px;font-size:14px}
+  .video-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;background:#f1ecf9;color:#6650a4;border-radius:6px;text-decoration:none;font-size:14px}
+  .video-badge:hover{background:#e3d9f3}
+  .vid-mark{display:inline-block;background:#c4302b;color:#fff;border-radius:4px;padding:1px 6px;font-size:11px;line-height:1.5}
+  a.vid{display:inline-block;background:#c4302b;color:#fff;border-radius:4px;padding:0 5px;font-size:11px;line-height:1.5;text-decoration:none;margin-left:6px;vertical-align:1px}
+  a.vid:hover{background:#a82722}
 </style>
 </head>
 <body>
@@ -15,13 +20,14 @@
 <p class="back-link"><a href="home.html">← ホームに戻る</a></p>
 <h1>逆引きガイド</h1>
 <p>「〜したい」から該当ページを探せます。目的の項目が見つからない場合は、各ページを最初から読んでみてください。</p>
+<p><a class="video-badge" href="videos.html"><span class="vid-mark">▶</span> 使い方動画を見る</a></p>
 
 <h2>メンバー・出場管理</h2>
 <ul>
-  <li><a href="players-tab.html#add-remove">試合の途中でも人数を増やしたり減らしたりしたい（飛び入り参加・途中退出）</a></li>
+  <li><a href="players-tab.html#add-remove">試合の途中でも人数を増やしたり減らしたりしたい（飛び入り参加・途中退出）</a> <a class="vid" href="videos.html#add" title="使い方動画を見る" aria-label="使い方動画を見る">▶</a></li>
   <li><a href="players-tab.html#add-remove">組み合わせ生成後、プレイヤー数を減らせない（－ボタンやゴミ箱アイコンが効かない）</a></li>
-  <li><a href="players-tab.html#rename">プレイヤーの名前を変えたい</a></li>
-  <li><a href="players-tab.html#rest-toggle">特定の人を一時的に休ませたい（トイレ休憩など）</a></li>
+  <li><a href="players-tab.html#rename">プレイヤーの名前を変えたい</a> <a class="vid" href="videos.html#rename" title="使い方動画を見る" aria-label="使い方動画を見る">▶</a></li>
+  <li><a href="players-tab.html#rest-toggle">特定の人を一時的に休ませたい（トイレ休憩など）</a> <a class="vid" href="videos.html#rest" title="使い方動画を見る" aria-label="使い方動画を見る">▶</a></li>
   <li><a href="players-tab.html#rest-toggle">全員の出場・休憩をまとめて切り替えたい</a></li>
   <li><a href="players-tab.html#default-absent">常連が休みがちで、毎回チェックを外すのが面倒</a></li>
   <li><a href="players-tab.html#status">誰が今試合中か、休憩中かを一目で知りたい</a></li>
