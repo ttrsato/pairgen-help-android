@@ -11,6 +11,12 @@
   .back-link{display:inline-block;margin-bottom:8px;font-size:14px}
   .video-wrap{position:relative;max-width:360px;padding-bottom:177.78%;height:0;overflow:hidden;border-radius:8px;margin:16px auto}
   .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+  .video-wrap{background:#000}
+  .video-facade{position:absolute;top:0;left:0;width:100%;height:100%;display:block}
+  .video-facade img{width:100%;height:100%;object-fit:cover;display:block;border:0}
+  .video-facade .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:66px;height:46px;background:rgba(0,0,0,.6);border-radius:12px;transition:background .15s}
+  .video-facade .play::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-38%,-50%);border-style:solid;border-width:11px 0 11px 19px;border-color:transparent transparent transparent #fff}
+  .video-facade:hover .play{background:#c4302b}
   .video-link{text-align:center;font-size:14px;margin-top:-4px}
 </style>
 </head>
@@ -18,30 +24,94 @@
 
 <p class="back-link"><a href="home.html">← ホームに戻る</a></p>
 <h1>使い方動画</h1>
-<p>「くみあぷ」の使い方を短い動画（YouTube ショート）で紹介しています。動画はこのページでそのまま再生できます。YouTube のアプリやサイトで見たいときは、動画の下のリンクをお使いください。</p>
+<p>「くみあぷ」の使い方を短い動画（YouTube ショート）で紹介しています。サムネイルをタップするとこのページで再生できます。YouTube のアプリやサイトで見たいときは、動画の下のリンクをお使いください。</p>
 <div class="note">※ iOS 版の紹介動画ですが、基本的な操作は Android 版でも同じです。行のスワイプ操作など一部の操作は Android 版ではアイコンのタップになります。詳しくは各ページの説明をご覧ください。</div>
 
 <h2 id="intro">初めての「くみあぷ」</h2>
 <p>アプリを入れたら最初に見る動画です。人数とコート数を決めて組み合わせを生成し、スコアをつけるまでの基本の流れを紹介します。あわせて<a href="getting-started.html">使ってみよう！</a>もご覧ください。</p>
-<div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/5PcDz2kxiu0" title="初めての「くみあぷ」(PairGen)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<div class="video-wrap" data-video="5PcDz2kxiu0">
+  <a class="video-facade" href="https://youtube.com/shorts/5PcDz2kxiu0" data-title="初めての「くみあぷ」(PairGen)" aria-label="動画を再生: 初めての「くみあぷ」(PairGen)">
+    <img src="https://i.ytimg.com/vi/5PcDz2kxiu0/oardefault.jpg" alt="初めての「くみあぷ」(PairGen)" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
 <p class="video-link"><a href="https://youtube.com/shorts/5PcDz2kxiu0">YouTube で見る</a></p>
 
 <h2 id="add">途中でプレイヤーやコートを追加するには？</h2>
 <p>練習会が始まったあとに人が増えたとき、コートが空いて使えるようになったときの操作です。<a href="players-tab.html">プレイヤータブ</a>・<a href="courts-tab.html">コートタブ</a>もあわせてご覧ください。</p>
-<div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/c4xQkajFpuw" title="くみあぷ(PairGen)で途中でプレイヤーやコートを追加するには？" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<div class="video-wrap" data-video="c4xQkajFpuw">
+  <a class="video-facade" href="https://youtube.com/shorts/c4xQkajFpuw" data-title="くみあぷ(PairGen)で途中でプレイヤーやコートを追加するには？" aria-label="動画を再生: くみあぷ(PairGen)で途中でプレイヤーやコートを追加するには？">
+    <img src="https://i.ytimg.com/vi/c4xQkajFpuw/oardefault.jpg" alt="くみあぷ(PairGen)で途中でプレイヤーやコートを追加するには？" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
 <p class="video-link"><a href="https://youtube.com/shorts/c4xQkajFpuw">YouTube で見る</a></p>
 
 <h2 id="rest">休憩したくなったら</h2>
 <p>しばらく休みたい人、途中で抜ける人がいるときに、出場中と休憩中を切り替える操作を紹介します。</p>
-<div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/PX8yFYwrWr4" title="くみあぷ (PairGen) で、休憩したくなったら。" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<div class="video-wrap" data-video="PX8yFYwrWr4">
+  <a class="video-facade" href="https://youtube.com/shorts/PX8yFYwrWr4" data-title="くみあぷ (PairGen) で、休憩したくなったら。" aria-label="動画を再生: くみあぷ (PairGen) で、休憩したくなったら。">
+    <img src="https://i.ytimg.com/vi/PX8yFYwrWr4/oardefault.jpg" alt="くみあぷ (PairGen) で、休憩したくなったら。" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
 <p class="video-link"><a href="https://youtube.com/shorts/PX8yFYwrWr4">YouTube で見る</a></p>
 
 <h2 id="rename">プレイヤーの名前を変える・名前でまとめて登録する</h2>
 <p>番号のままのプレイヤーに名前を付ける方法と、名前を続けて入力してまとめて登録する方法です。</p>
-<div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/pRo48LzYUKc" title="くみあぷ (PairGen) プレイヤーの名前を変える、名前で複数登録する。" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<div class="video-wrap" data-video="pRo48LzYUKc">
+  <a class="video-facade" href="https://youtube.com/shorts/pRo48LzYUKc" data-title="くみあぷ (PairGen) プレイヤーの名前を変える、名前で複数登録する。" aria-label="動画を再生: くみあぷ (PairGen) プレイヤーの名前を変える、名前で複数登録する。">
+    <img src="https://i.ytimg.com/vi/pRo48LzYUKc/oardefault.jpg" alt="くみあぷ (PairGen) プレイヤーの名前を変える、名前で複数登録する。" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
 <p class="video-link"><a href="https://youtube.com/shorts/pRo48LzYUKc">YouTube で見る</a></p>
 
+<h2 id="fixed-pair">固定ペアを設定するには？</h2>
+<p>カップルや親子、実力差のある2人など、いつも同じ相手と組ませたいときの設定です。設定と解除のしかたを紹介します。詳しくは<a href="players-tab.html#fixed-pair">プレイヤータブ「固定ペア」</a>をご覧ください。</p>
+<div class="video-wrap" data-video="m7mx5ovIxLU">
+  <a class="video-facade" href="https://youtube.com/shorts/m7mx5ovIxLU" data-title="くみあぷ  (PairGen) で固定ペアを設定するには？" aria-label="動画を再生: くみあぷ  (PairGen) で固定ペアを設定するには？">
+    <img src="https://i.ytimg.com/vi/m7mx5ovIxLU/oardefault.jpg" alt="くみあぷ  (PairGen) で固定ペアを設定するには？" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
+<p class="video-link"><a href="https://youtube.com/shorts/m7mx5ovIxLU">YouTube で見る</a></p>
+
+<h2 id="level">レベル分けするには？</h2>
+<p>コートとプレイヤーにレベル 1〜3 を設定して、初級者・上級者を分けてコートに割り当てる方法です。あわせて<a href="advanced.html#level-split">高度な使い方「レベル分け」</a>もご覧ください。</p>
+<div class="video-wrap" data-video="FTYxi5vATZw">
+  <a class="video-facade" href="https://youtube.com/shorts/FTYxi5vATZw" data-title="くみアプ (PairGen) でレベル分けするには？" aria-label="動画を再生: くみアプ (PairGen) でレベル分けするには？">
+    <img src="https://i.ytimg.com/vi/FTYxi5vATZw/oardefault.jpg" alt="くみアプ (PairGen) でレベル分けするには？" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
+<p class="video-link"><a href="https://youtube.com/shorts/FTYxi5vATZw">YouTube で見る</a></p>
+
 <p class="back-link"><a href="home.html">← ホームに戻る</a></p>
+
+<script>
+(function(){
+  // file:// で開いたときは YouTube の埋め込みがリファラー無しになりエラー153になるため、
+  // サムネイルのリンクをそのまま開く。http(s) で配信されている場合のみ埋め込み再生に差し替える。
+  if (location.protocol !== 'http:' && location.protocol !== 'https:') return;
+  var facades = document.querySelectorAll('.video-facade');
+  for (var i = 0; i < facades.length; i++) {
+    facades[i].addEventListener('click', function(e){
+      e.preventDefault();
+      var wrap = this.parentNode;
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + wrap.getAttribute('data-video') + '?autoplay=1';
+      frame.title = this.getAttribute('data-title') || '';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.setAttribute('frameborder', '0');
+      frame.allowFullscreen = true;
+      wrap.innerHTML = '';
+      wrap.appendChild(frame);
+    });
+  }
+})();
+</script>
 
 </body>
 </html>

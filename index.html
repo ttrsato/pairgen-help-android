@@ -14,8 +14,15 @@
   nav.pages{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 28px}
   nav.pages a{display:inline-block;padding:6px 12px;background:#f1ecf9;color:#6650a4;border-radius:6px;text-decoration:none;font-size:14px}
   nav.pages a:hover{background:#e3d9f3}
+  .vid-mark{display:inline-block;background:#c4302b;color:#fff;border-radius:4px;padding:1px 6px;font-size:11px;line-height:1.5;margin-right:5px}
   .video-wrap{position:relative;max-width:360px;padding-bottom:177.78%;height:0;overflow:hidden;border-radius:8px;margin:16px auto}
   .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+  .video-wrap{background:#000}
+  .video-facade{position:absolute;top:0;left:0;width:100%;height:100%;display:block}
+  .video-facade img{width:100%;height:100%;object-fit:cover;display:block;border:0}
+  .video-facade .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:66px;height:46px;background:rgba(0,0,0,.6);border-radius:12px;transition:background .15s}
+  .video-facade .play::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-38%,-50%);border-style:solid;border-width:11px 0 11px 19px;border-color:transparent transparent transparent #fff}
+  .video-facade:hover .play{background:#c4302b}
   .video-link{text-align:center;font-size:14px;margin-top:-4px}
   .device-gallery{display:flex;flex-wrap:nowrap;justify-content:center;align-items:flex-end;gap:12px;margin:16px 0}
   .device-gallery figure{margin:0;text-align:center;flex:1 1 0;min-width:0}
@@ -39,7 +46,7 @@
   <a href="players-tab.html">プレイヤータブ</a>
   <a href="courts-tab.html">コートタブ</a>
   <a href="advanced.html">高度な使い方</a>
-  <a href="videos.html">使い方動画</a>
+  <a href="videos.html"><span class="vid-mark">▶</span>使い方動画</a>
   <a href="update-history.html">更新履歴</a>
   <a href="privacy-policy.html">プライバシーポリシー</a>
 </nav>
@@ -51,7 +58,12 @@
 
 <h2>使い方動画</h2>
 <p>※ iOS 版の紹介動画ですが、基本的な操作は Android 版でも同じです。</p>
-<div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/5PcDz2kxiu0" title="PairGen 使い方動画" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<div class="video-wrap" data-video="5PcDz2kxiu0">
+  <a class="video-facade" href="https://youtube.com/shorts/5PcDz2kxiu0" data-title="PairGen 使い方動画" aria-label="動画を再生: PairGen 使い方動画">
+    <img src="https://i.ytimg.com/vi/5PcDz2kxiu0/oardefault.jpg" alt="PairGen 使い方動画" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
 <p class="video-link"><a href="videos.html">使い方動画の一覧を見る →</a></p>
 
 <h2>主な機能</h2>
@@ -134,6 +146,30 @@
   <li>拡大表示は最初からオンになっています。一画面に表示される行数を増やしたいときは、同じボタンでオフにしてください</li>
   <li>プレイヤーの名前をまとめて入力して「置き換え」を選んだときに、それまでの試合結果が残ってしまう問題を修正しました。置き換えると、プレイヤーと一緒に試合結果も削除されます</li>
 </ul>
+
+<script>
+(function(){
+  // file:// で開いたときは YouTube の埋め込みがリファラー無しになりエラー153になるため、
+  // サムネイルのリンクをそのまま開く。http(s) で配信されている場合のみ埋め込み再生に差し替える。
+  if (location.protocol !== 'http:' && location.protocol !== 'https:') return;
+  var facades = document.querySelectorAll('.video-facade');
+  for (var i = 0; i < facades.length; i++) {
+    facades[i].addEventListener('click', function(e){
+      e.preventDefault();
+      var wrap = this.parentNode;
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + wrap.getAttribute('data-video') + '?autoplay=1';
+      frame.title = this.getAttribute('data-title') || '';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.setAttribute('frameborder', '0');
+      frame.allowFullscreen = true;
+      wrap.innerHTML = '';
+      wrap.appendChild(frame);
+    });
+  }
+})();
+</script>
 
 <h2>フィードバック</h2>
 <p>バグ報告・ご意見は Google Play のレビューまたは X（旧 Twitter）<a href="https://x.com/ttrsato">@ttrsato</a> までお寄せください。</p>
