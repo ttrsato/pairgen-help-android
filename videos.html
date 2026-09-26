@@ -5,13 +5,16 @@
   body{font-family:Roboto,"Segoe UI","Helvetica Neue",Arial,sans-serif;max-width:720px;margin:0 auto;padding:24px;color:#1a1a1a;line-height:1.75}
   h1{font-size:26px;font-weight:700;border-bottom:2px solid #e0e0e0;padding-bottom:10px}
   h2{font-size:18px;font-weight:600;margin-top:36px;color:#6650a4}
+  h3{font-size:15px;font-weight:600;margin-top:28px;color:#333}
   ul{padding-left:20px}
   li{margin-bottom:4px}
   .note{background:#fff8e1;border-left:4px solid #ffc107;padding:10px 14px;border-radius:4px;font-size:14px;margin-top:8px}
   .back-link{display:inline-block;margin-bottom:8px;font-size:14px}
-  .video-wrap{position:relative;max-width:360px;padding-bottom:177.78%;height:0;overflow:hidden;border-radius:8px;margin:16px auto}
+  .toc{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 28px;padding:0;list-style:none}
+  .toc a{display:inline-block;padding:6px 12px;background:#f1ecf9;color:#6650a4;border-radius:6px;text-decoration:none;font-size:14px}
+  .toc a:hover{background:#e3d9f3}
+  .video-wrap{position:relative;max-width:360px;padding-bottom:177.78%;height:0;overflow:hidden;border-radius:8px;margin:16px auto;background:#000}
   .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-  .video-wrap{background:#000}
   .video-facade{position:absolute;top:0;left:0;width:100%;height:100%;display:block}
   .video-facade img{width:100%;height:100%;object-fit:cover;display:block;border:0}
   .video-facade .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:66px;height:46px;background:rgba(0,0,0,.6);border-radius:12px;transition:background .15s}
@@ -27,7 +30,22 @@
 <p>「くみあぷ」の使い方を短い動画（YouTube ショート）で紹介しています。サムネイルをタップするとこのページで再生できます。YouTube のアプリやサイトで見たいときは、動画の下のリンクをお使いください。</p>
 <div class="note">※ iOS 版の紹介動画ですが、基本的な操作は Android 版でも同じです。行のスワイプ操作など一部の操作は Android 版ではアイコンのタップになります。詳しくは各ページの説明をご覧ください。</div>
 
-<h2 id="intro">初めての「くみあぷ」</h2>
+<ul class="toc">
+  <li><a href="#intro">初めての「くみあぷ」</a></li>
+  <li><a href="#rename">プレイヤーの名前を変える・まとめて登録する</a></li>
+  <li><a href="#add">途中でプレイヤーやコートを追加する</a></li>
+  <li><a href="#rest">休憩したくなったら</a></li>
+  <li><a href="#fixed-pair">固定ペアを設定する</a></li>
+  <li><a href="#level">レベル分けする</a></li>
+  <li><a href="#cancel">生成した組み合わせをキャンセルする</a></li>
+  <li><a href="#swap">組み合わせの一部を手で入れ替える</a></li>
+  <li><a href="#score">スコアを記録する</a></li>
+  <li><a href="#server">他の端末から閲覧・操作する</a></li>
+</ul>
+
+<h2>はじめに</h2>
+
+<h3 id="intro">初めての「くみあぷ」</h3>
 <p>アプリを入れたら最初に見る動画です。人数とコート数を決めて組み合わせを生成し、スコアをつけるまでの基本の流れを紹介します。あわせて<a href="getting-started.html">使ってみよう！</a>もご覧ください。</p>
 <div class="video-wrap" data-video="5PcDz2kxiu0">
   <a class="video-facade" href="https://youtube.com/shorts/5PcDz2kxiu0" data-title="初めての「くみあぷ」(PairGen)" aria-label="動画を再生: 初めての「くみあぷ」(PairGen)">
@@ -37,28 +55,10 @@
 </div>
 <p class="video-link"><a href="https://youtube.com/shorts/5PcDz2kxiu0">YouTube で見る</a></p>
 
-<h2 id="add">途中でプレイヤーやコートを追加するには？</h2>
-<p>練習会が始まったあとに人が増えたとき、コートが空いて使えるようになったときの操作です。<a href="players-tab.html">プレイヤータブ</a>・<a href="courts-tab.html">コートタブ</a>もあわせてご覧ください。</p>
-<div class="video-wrap" data-video="c4xQkajFpuw">
-  <a class="video-facade" href="https://youtube.com/shorts/c4xQkajFpuw" data-title="くみあぷ(PairGen)で途中でプレイヤーやコートを追加するには？" aria-label="動画を再生: くみあぷ(PairGen)で途中でプレイヤーやコートを追加するには？">
-    <img src="https://i.ytimg.com/vi/c4xQkajFpuw/oardefault.jpg" alt="くみあぷ(PairGen)で途中でプレイヤーやコートを追加するには？" loading="lazy">
-    <span class="play" aria-hidden="true"></span>
-  </a>
-</div>
-<p class="video-link"><a href="https://youtube.com/shorts/c4xQkajFpuw">YouTube で見る</a></p>
+<h2>プレイヤー・コートの管理</h2>
 
-<h2 id="rest">休憩したくなったら</h2>
-<p>しばらく休みたい人、途中で抜ける人がいるときに、出場中と休憩中を切り替える操作を紹介します。</p>
-<div class="video-wrap" data-video="PX8yFYwrWr4">
-  <a class="video-facade" href="https://youtube.com/shorts/PX8yFYwrWr4" data-title="くみあぷ (PairGen) で、休憩したくなったら。" aria-label="動画を再生: くみあぷ (PairGen) で、休憩したくなったら。">
-    <img src="https://i.ytimg.com/vi/PX8yFYwrWr4/oardefault.jpg" alt="くみあぷ (PairGen) で、休憩したくなったら。" loading="lazy">
-    <span class="play" aria-hidden="true"></span>
-  </a>
-</div>
-<p class="video-link"><a href="https://youtube.com/shorts/PX8yFYwrWr4">YouTube で見る</a></p>
-
-<h2 id="rename">プレイヤーの名前を変える・名前でまとめて登録する</h2>
-<p>番号のままのプレイヤーに名前を付ける方法と、名前を続けて入力してまとめて登録する方法です。</p>
+<h3 id="rename">プレイヤーの名前を変える・まとめて登録する</h3>
+<p>番号のままのプレイヤーに名前を付ける方法と、名前を続けて入力してまとめて登録する方法です。（<a href="players-tab.html#rename">プレイヤータブ「名前の変更」</a>）</p>
 <div class="video-wrap" data-video="pRo48LzYUKc">
   <a class="video-facade" href="https://youtube.com/shorts/pRo48LzYUKc" data-title="くみあぷ (PairGen) プレイヤーの名前を変える、名前で複数登録する。" aria-label="動画を再生: くみあぷ (PairGen) プレイヤーの名前を変える、名前で複数登録する。">
     <img src="https://i.ytimg.com/vi/pRo48LzYUKc/oardefault.jpg" alt="くみあぷ (PairGen) プレイヤーの名前を変える、名前で複数登録する。" loading="lazy">
@@ -67,8 +67,30 @@
 </div>
 <p class="video-link"><a href="https://youtube.com/shorts/pRo48LzYUKc">YouTube で見る</a></p>
 
-<h2 id="fixed-pair">固定ペアを設定するには？</h2>
-<p>カップルや親子、実力差のある2人など、いつも同じ相手と組ませたいときの設定です。設定と解除のしかたを紹介します。詳しくは<a href="players-tab.html#fixed-pair">プレイヤータブ「固定ペア」</a>をご覧ください。</p>
+<h3 id="add">途中でプレイヤーやコートを追加する</h3>
+<p>練習会が始まったあとに人が増えたとき、コートが空いて使えるようになったときの操作です。（<a href="players-tab.html#add-remove">プレイヤーの追加・削除</a>／<a href="courts-tab.html#court-count">コート数の変更</a>）</p>
+<div class="video-wrap" data-video="c4xQkajFpuw">
+  <a class="video-facade" href="https://youtube.com/shorts/c4xQkajFpuw" data-title="くみあぷ(PairGen)で途中でプレイヤーやコートを追加するには？" aria-label="動画を再生: くみあぷ(PairGen)で途中でプレイヤーやコートを追加するには？">
+    <img src="https://i.ytimg.com/vi/c4xQkajFpuw/oardefault.jpg" alt="くみあぷ(PairGen)で途中でプレイヤーやコートを追加するには？" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
+<p class="video-link"><a href="https://youtube.com/shorts/c4xQkajFpuw">YouTube で見る</a></p>
+
+<h3 id="rest">休憩したくなったら</h3>
+<p>しばらく休みたい人、途中で抜ける人がいるときに、出場中と休憩中を切り替える操作を紹介します。（<a href="players-tab.html#rest-toggle">出場・休憩の切り替え</a>）</p>
+<div class="video-wrap" data-video="PX8yFYwrWr4">
+  <a class="video-facade" href="https://youtube.com/shorts/PX8yFYwrWr4" data-title="くみあぷ (PairGen) で、休憩したくなったら。" aria-label="動画を再生: くみあぷ (PairGen) で、休憩したくなったら。">
+    <img src="https://i.ytimg.com/vi/PX8yFYwrWr4/oardefault.jpg" alt="くみあぷ (PairGen) で、休憩したくなったら。" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
+<p class="video-link"><a href="https://youtube.com/shorts/PX8yFYwrWr4">YouTube で見る</a></p>
+
+<h2>組み合わせの条件を決める</h2>
+
+<h3 id="fixed-pair">固定ペアを設定する</h3>
+<p>カップルや親子、実力差のある2人など、いつも同じ相手と組ませたいときの設定です。設定と解除のしかたを紹介します。（<a href="players-tab.html#fixed-pair">プレイヤータブ「固定ペア」</a>）</p>
 <div class="video-wrap" data-video="m7mx5ovIxLU">
   <a class="video-facade" href="https://youtube.com/shorts/m7mx5ovIxLU" data-title="くみあぷ  (PairGen) で固定ペアを設定するには？" aria-label="動画を再生: くみあぷ  (PairGen) で固定ペアを設定するには？">
     <img src="https://i.ytimg.com/vi/m7mx5ovIxLU/oardefault.jpg" alt="くみあぷ  (PairGen) で固定ペアを設定するには？" loading="lazy">
@@ -77,8 +99,8 @@
 </div>
 <p class="video-link"><a href="https://youtube.com/shorts/m7mx5ovIxLU">YouTube で見る</a></p>
 
-<h2 id="level">レベル分けするには？</h2>
-<p>コートとプレイヤーにレベル 1〜3 を設定して、初級者・上級者を分けてコートに割り当てる方法です。あわせて<a href="advanced.html#level-split">高度な使い方「レベル分け」</a>もご覧ください。</p>
+<h3 id="level">レベル分けする</h3>
+<p>コートとプレイヤーにレベル 1〜3 を設定して、初級者・上級者を分けてコートに割り当てる方法です。（<a href="advanced.html#level-split">高度な使い方「レベル分け」</a>）</p>
 <div class="video-wrap" data-video="FTYxi5vATZw">
   <a class="video-facade" href="https://youtube.com/shorts/FTYxi5vATZw" data-title="くみアプ (PairGen) でレベル分けするには？" aria-label="動画を再生: くみアプ (PairGen) でレベル分けするには？">
     <img src="https://i.ytimg.com/vi/FTYxi5vATZw/oardefault.jpg" alt="くみアプ (PairGen) でレベル分けするには？" loading="lazy">
@@ -86,6 +108,50 @@
   </a>
 </div>
 <p class="video-link"><a href="https://youtube.com/shorts/FTYxi5vATZw">YouTube で見る</a></p>
+
+<h2>生成した組み合わせを直す</h2>
+
+<h3 id="cancel">生成した組み合わせをキャンセルする</h3>
+<p>組み合わせを生成したあとで、選ばれた人が休憩したくなったときなど、その組み合わせを破棄して作り直す方法です。（<a href="game-tab.html#undo">ラウンドの削除</a>）</p>
+<div class="video-wrap" data-video="FQUGhfuBy34">
+  <a class="video-facade" href="https://youtube.com/shorts/FQUGhfuBy34" data-title="くみあぷ (PairGen) で生成した組み合わせをキャンセルするには？" aria-label="動画を再生: くみあぷ (PairGen) で生成した組み合わせをキャンセルするには？">
+    <img src="https://i.ytimg.com/vi/FQUGhfuBy34/oardefault.jpg" alt="くみあぷ (PairGen) で生成した組み合わせをキャンセルするには？" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
+<p class="video-link"><a href="https://youtube.com/shorts/FQUGhfuBy34">YouTube で見る</a></p>
+
+<h3 id="swap">組み合わせの一部を手で入れ替える</h3>
+<p>生成された組み合わせの一部だけを強制的に変える方法です。同じラウンドの中での入れ替えも、休憩中・待機中の人との交代もできます。（<a href="game-tab.html#edit-round">組み合わせの編集</a>）</p>
+<div class="video-wrap" data-video="bx0nEMEOmA4">
+  <a class="video-facade" href="https://youtube.com/shorts/bx0nEMEOmA4" data-title="くみあぷ (PairGen) で強制的に組み合わせを変えるには？" aria-label="動画を再生: くみあぷ (PairGen) で強制的に組み合わせを変えるには？">
+    <img src="https://i.ytimg.com/vi/bx0nEMEOmA4/oardefault.jpg" alt="くみあぷ (PairGen) で強制的に組み合わせを変えるには？" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
+<p class="video-link"><a href="https://youtube.com/shorts/bx0nEMEOmA4">YouTube で見る</a></p>
+
+<h2>スコアと他デバイス</h2>
+
+<h3 id="score">スコアを記録する</h3>
+<p>コートに見立てたスコア入力画面で、感覚的に得点を記録できます。（<a href="game-tab.html#score-input">スコアの入力</a>）</p>
+<div class="video-wrap" data-video="8cW4Ht0_Jmg">
+  <a class="video-facade" href="https://youtube.com/shorts/8cW4Ht0_Jmg" data-title="くみあぷ (PairGen) でスコアを記録するには？" aria-label="動画を再生: くみあぷ (PairGen) でスコアを記録するには？">
+    <img src="https://i.ytimg.com/vi/8cW4Ht0_Jmg/oardefault.jpg" alt="くみあぷ (PairGen) でスコアを記録するには？" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
+<p class="video-link"><a href="https://youtube.com/shorts/8cW4Ht0_Jmg">YouTube で見る</a></p>
+
+<h3 id="server">他の端末から閲覧・操作する</h3>
+<p>サーバー機能を起動すると、同じネットワークにある他の端末のブラウザ（iPhone・Android・パソコンいずれも可）から組み合わせの閲覧や操作ができます。（<a href="game-tab.html#server">サーバー機能</a>）</p>
+<div class="video-wrap" data-video="0eTlHd_bgpU">
+  <a class="video-facade" href="https://youtube.com/shorts/0eTlHd_bgpU" data-title="くみあぷ (PairGen) を他の端末で閲覧操作するには？" aria-label="動画を再生: くみあぷ (PairGen) を他の端末で閲覧操作するには？">
+    <img src="https://i.ytimg.com/vi/0eTlHd_bgpU/oardefault.jpg" alt="くみあぷ (PairGen) を他の端末で閲覧操作するには？" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
+<p class="video-link"><a href="https://youtube.com/shorts/0eTlHd_bgpU">YouTube で見る</a></p>
 
 <p class="back-link"><a href="home.html">← ホームに戻る</a></p>
 
