@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>くみあぷ (PairGen) – Google スプレッドシート連携（ユーザーの作業）</title>
+<style>
+  body{font-family:Roboto,"Segoe UI","Helvetica Neue",Arial,sans-serif;max-width:720px;margin:0 auto;padding:24px;color:#1a1a1a;line-height:1.75}
+  h1{font-size:26px;font-weight:700;border-bottom:2px solid #e0e0e0;padding-bottom:10px}
+  h2{font-size:18px;font-weight:600;margin-top:36px;color:#6650a4}
+  h3{font-size:15px;font-weight:600;margin-top:24px}
+  code{background:#f0f0f0;padding:1px 6px;border-radius:4px;font-size:14px}
+  table{border-collapse:collapse;width:100%;margin:12px 0}
+  th,td{border:1px solid #ddd;padding:8px 12px;text-align:left}
+  th{background:#f5f5f5;font-weight:600}
+  .video-wrap{position:relative;max-width:360px;aspect-ratio:9/16;overflow:hidden;border-radius:8px;margin:16px auto;background:#000}
+  .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+  .video-facade{position:absolute;top:0;left:0;width:100%;height:100%;display:block}
+  .video-facade img{width:100%;height:100%;object-fit:cover;display:block;border:0}
+  .video-facade .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:66px;height:46px;background:rgba(0,0,0,.6);border-radius:12px;transition:background .15s}
+  .video-facade .play::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-38%,-50%);border-style:solid;border-width:11px 0 11px 19px;border-color:transparent transparent transparent #fff}
+  .video-facade:hover .play{background:#c4302b}
+  .video-link{text-align:center;font-size:14px;margin-top:-4px}
+  .ss img{max-width:100%;border-radius:8px;border:1px solid #ddd;display:block;margin:16px auto}
+  .ss.phone img{max-width:280px}
+  .tip{background:#e8f5e9;border-left:4px solid #4caf50;padding:10px 14px;border-radius:4px;font-size:14px;margin-top:8px}
+  .note{background:#fff8e1;border-left:4px solid #ffc107;padding:10px 14px;border-radius:4px;font-size:14px;margin-top:8px}
+  .back-link{display:inline-block;margin-bottom:8px;font-size:14px}
+  .toc{background:#f5f8fb;border:1px solid #dde6ee;border-radius:8px;padding:14px 20px;margin:16px 0 28px}
+  .toc ul{margin:0;padding-left:20px}
+  .toc li{margin-bottom:4px;font-size:14px}
+  .toc a{color:#6650a4;text-decoration:none}
+  .toc a:hover{text-decoration:underline}
+  .pages{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+  .pages a{border:1px solid #6650a4;border-radius:16px;padding:2px 12px;font-size:14px;text-decoration:none;color:#6650a4}
+  .pages a.current{background:#6650a4;color:#fff}
+  .en{color:#666;font-size:.92em}
+</style>
+</head>
+<body>
+
+<p class="back-link"><a href="home.html">← ホームに戻る</a></p>
+<nav class="pages">
+  <a href="attendance-overview.html">全体像</a>
+  <a href="attendance-admin.html">管理者の作業</a>
+  <a href="attendance-user.html" class="current">ユーザーの作業</a>
+</nav>
+
+<h1>ユーザーの作業</h1>
+<p>管理者の準備ができたあと、くみあぷ（PairGen）で組み合わせを作る人と、参加者が行う作業です。準備がまだのときは、<a href="attendance-admin.html">管理者の作業</a>を先に済ませてください。全体の仕組みは<a href="attendance-overview.html#flow">全体像</a>にあります。</p>
+<table>
+  <tr><th>だれが</th><th>どこで</th><th>やること</th></tr>
+  <tr><td>組み合わせを作る人</td><td>くみあぷ（PairGen）</td><td>出欠表（Web アプリ）を登録し、必要なときに読み込む（1・3・4）</td></tr>
+  <tr><td>参加者</td><td>ブラウザ（スマートフォンで可）</td><td>出欠表に、名前の登録と出欠の入力をする（2）</td></tr>
+</table>
+
+<nav class="toc">
+<ul>
+  <li><a href="#app">1. くみあぷ（PairGen）にウェブアプリを登録する（管理者）</a></li>
+  <li><a href="#web">2. 参加者の作業（Web アプリ）</a>
+    <ul>
+      <li><a href="#web-banner">画面上部の注意書きについて</a></li>
+      <li><a href="#web-user">ユーザーを登録する</a></li>
+      <li><a href="#web-event">イベントを登録する</a></li>
+      <li><a href="#web-attend">イベントの参加を登録する</a></li>
+    </ul>
+  </li>
+  <li><a href="#load">3. くみあぷ（PairGen）で読み込む</a></li>
+  <li><a href="#edit">4. 登録内容を変更する</a></li>
+</ul>
+</nav>
+
+<h2 id="app">1. くみあぷ（PairGen）にウェブアプリを登録する（管理者）</h2>
+<p>くみあぷ（PairGen）に「出欠表はここにあります」と教えておく作業です。組み合わせを作る人が、1 回だけ行います。<a href="attendance-admin.html#share">管理者の作業</a>で控えた<strong>ウェブアプリの URL</strong>と <strong><code>READ_KEY</code></strong> を使います。</p>
+<ol>
+  <li>プレイヤータブの左上の「…」メニューから<strong>「グループ管理」</strong>を開きます。</li>
+  <li>「新しいグループ」の一番上で<strong>「Google スプレッドシート」</strong>を選びます。</li>
+  <li>次の 3 つを入力します。
+    <ul>
+      <li>グループ名（好きな名前）</li>
+      <li>スプレッドシートの URL（ウェブアプリの URL）</li>
+      <li><code>READ_KEY</code></li>
+    </ul>
+  </li>
+  <li><strong>「追加」</strong>をタップします。</li>
+</ol>
+<div class="note">URL は<code>https://</code> で始まるウェブアプリの URL です。3 つとも入力すると「追加」が押せるようになります。</div>
+<p>登録すると、「グループ」の一覧に、地球儀のアイコンが付いた<strong>青い下線付きの名前</strong>で表示されます。この名前をタップすると、登録した Web アプリが、端末の既定のブラウザで開きます。出欠を確認したいときや、イベントを登録したいときに、すぐ Web アプリへ移動できます。</p>
+<div class="note">Web アプリを開くときに、READ_KEY は送られません。初回は「合言葉入力」の入力欄が出るので、管理者から教わった <code>ACCESS_KEY</code> を入れてください。</div>
+<div class="tip">スプレッドシートのグループには、プレイヤーを手動で登録することはできません。メンバーは、読み込むたびにスプレッドシートから作られます。</div>
+
+<h2 id="web">2. 参加者の作業（Web アプリ）</h2>
+<p>参加者が出欠を入力する場所が、Web アプリ（出欠表）です。アプリのインストールは要りません。参加者は、管理者から教わった<strong>ウェブアプリの URL</strong>をブラウザ（スマートフォンでも可）で開きます。初回は<strong>「合言葉入力」</strong>の入力欄が出るので、管理者から教わった <code>ACCESS_KEY</code> を入れて「開く」をタップします。</p>
+<p>画面は日本語で表示されます。右上の「English」で英語に切り替えられます。</p>
+<p>操作の流れは、動画でも見られます。</p>
+<div class="video-wrap" data-video="eP2XddK9cGQ">
+  <a class="video-facade" href="https://youtube.com/shorts/eP2XddK9cGQ" data-title="【くみあぷ】Webで出欠を登録する" aria-label="動画を再生: 【くみあぷ】Webで出欠を登録する">
+    <img src="https://i.ytimg.com/vi/eP2XddK9cGQ/maxresdefault.jpg" alt="【くみあぷ】Webで出欠を登録する" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
+<p class="video-link"><a href="https://youtube.com/shorts/eP2XddK9cGQ">YouTube で見る</a></p>
+
+<h3 id="web-banner">画面上部の「このアプリケーションは Google Apps Script のユーザーによって作成されたものです」について</h3>
+<p>Web アプリを開くと、画面の上に青い帯で次のように表示されます。</p>
+<blockquote style="margin:12px 0;padding:8px 14px;background:#e8f0fe;border-radius:4px">このアプリケーションは Google Apps Script のユーザーによって作成されたものです　［不正行為を報告］［詳細］［×］</blockquote>
+<ul>
+  <li>これは、Google Apps Script で作られた Web アプリであれば、どれにも Google が自動で表示する注意書きです。このアプリに問題があるという意味ではありません。</li>
+  <li>この Web アプリは、あなたの所属するグループの管理者が用意したものです。管理者から教わった URL であれば、そのまま使って問題ありません。</li>
+  <li>帯は、右端の<strong>「×」</strong>で閉じられます。閉じなくても、使い方には影響しません。</li>
+  <li><strong>「不正行為を報告」</strong>は、Google に不正なアプリとして報告するためのボタンです。誤って押さないようにしてください。</li>
+</ul>
+<div class="note">管理者から教わっていない URL でこの表示が出たときは、入力を進めず、管理者に確認してください。</div>
+
+<h3 id="web-user">ユーザーを登録する</h3>
+<p>初めて使う人は、先に自分の名前を登録します。</p>
+<ol>
+  <li>「新規ユーザー登録」の入力欄に名前を入れます。この名前が、くみあぷ（PairGen）のプレイヤー名になります。</li>
+  <li>「レベル」を選びます（1〜3）。このレベルが くみあぷ（PairGen）にも反映されます。</li>
+  <li><strong>「追加」</strong>をタップします。</li>
+</ol>
+<p>登録すると、「利用ユーザーを選択」のリストに名前が出ます。出欠を入力するときは、このリストから自分の名前を選びます。</p>
+<div class="ss"><img src="images/attendance-web-user.png" alt="ユーザー登録の画面"></div>
+<div class="note">くみあぷ（PairGen）には、ここで登録した名前がそのまま表示されます。他の参加者と区別できる名前にしてください。</div>
+
+<h3 id="web-event">イベントを登録する</h3>
+<p>練習日などの予定をカレンダーに登録します。誰か 1 人が登録すれば、全員に表示されます。</p>
+<ol>
+  <li>カレンダーで、イベントの日付をタップします。</li>
+  <li>「イベントを作成」の画面で、<strong>時間帯</strong>（開始と終了）と<strong>場所</strong>を入力します。場所は、リストから選ぶか「+ 新しい場所を入力」で入力します。</li>
+  <li><strong>「イベント作成」</strong>をタップします。</li>
+</ol>
+<div class="ss"><img src="images/attendance-web-event.png" alt="イベント作成の画面"></div>
+<div class="note">画面を開いたときは、先月・当月・翌月のデータを読み込みます。ほかの月へ移動したときは、その月のデータを読み込むので、読み込み中は日付をタップできません。少し待つとタップできるようになります。</div>
+<p>登録したイベントは、カレンダーの日付の下に場所が表示されます。間違えて作ったイベントは、日付をタップして「このイベントを削除する」で消せます。</p>
+
+<h3 id="web-attend">イベントの参加を登録する</h3>
+<ol>
+  <li>「利用ユーザーを選択」で自分の名前を選びます。</li>
+  <li>カレンダーでイベントの日付をタップします。</li>
+  <li><strong>「参加」「不参加」「保留」</strong>のどれかをタップします。</li>
+</ol>
+<div class="ss"><img src="images/attendance-web-attend.png" alt="出欠を選ぶ画面"></div>
+<p>あとから変更したいときは、同じ画面でもう一度選び直します。</p>
+<table>
+  <tr><th>押すボタン</th><th>くみあぷ（PairGen）での扱い</th></tr>
+  <tr><td>参加</td><td>出場</td></tr>
+  <tr><td>保留</td><td>休憩</td></tr>
+  <tr><td>不参加／まだ押していない</td><td>デフォルト欠席</td></tr>
+</table>
+<div class="tip">予定が決まらないときは「保留」にしておくと、くみあぷ（PairGen）では休憩として一覧に載ります。当日に来られることになったら、くみあぷ（PairGen）側でチェックを入れるだけで出場に切り替えられます。</div>
+
+<h2 id="load">3. くみあぷ（PairGen）で読み込む</h2>
+<p>操作の流れは、動画でも見られます。</p>
+<div class="video-wrap" data-video="OnTU0PRt7R0">
+  <a class="video-facade" href="https://youtube.com/shorts/OnTU0PRt7R0" data-title="【くみあぷ】出欠リストを読み込む" aria-label="動画を再生: 【くみあぷ】出欠リストを読み込む">
+    <img src="https://i.ytimg.com/vi/OnTU0PRt7R0/maxresdefault.jpg" alt="【くみあぷ】出欠リストを読み込む" loading="lazy">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+</div>
+<p class="video-link"><a href="https://youtube.com/shorts/OnTU0PRt7R0">YouTube で見る</a></p>
+<ol>
+  <li>プレイヤータブの左上の「…」メニューから<strong>「グループ読込」</strong>を開きます。</li>
+  <li>地球儀のアイコンが付いたグループが、Google スプレッドシートのグループです。タップします。</li>
+  <li>出欠表から、直近のイベントの参加者が、プレイヤー一覧に読み込まれます。</li>
+</ol>
+<ul>
+  <li>イベントが見つかったときは、プレイヤー一覧の見出しが<strong>「グループ名 日付」</strong>になります。イベントがないときは、グループ名だけです。</li>
+  <li>読み込み中は、画面に待機の表示が出ます。通信に失敗したときは、メッセージが出て、今の一覧はそのままです。</li>
+  <li>同じイベント日に読み込み直すと、試合の記録を残したまま出欠だけ更新されます。詳しくは<a href="attendance-overview.html#reload">全体像</a>を見てください。</li>
+</ul>
+
+<h2 id="edit">4. 登録内容を変更する</h2>
+<p>URL や <code>READ_KEY</code> が変わったときは、「グループ管理」を開き、そのグループの<strong>鉛筆アイコン</strong>をタップします。グループ名、URL、<code>READ_KEY</code> を直して<strong>「保存」</strong>をタップします。</p>
+<p>グループを消したいときは、ゴミ箱アイコンをタップします。スプレッドシートのデータは消えません。</p>
+<p>うまく読み込めないときは、<a href="attendance-overview.html#trouble">全体像の「困ったとき」</a>を見てください。</p>
+
+<script>
+(function(){
+  // file:// で開いたときは YouTube の埋め込みがリファラー無しになりエラー153になるため、
+  // サムネイルのリンクをそのまま開く。http(s) で配信されている場合のみ埋め込み再生に差し替える。
+  if (location.protocol !== 'http:' && location.protocol !== 'https:') return;
+  var facades = document.querySelectorAll('.video-facade');
+  for (var i = 0; i < facades.length; i++) {
+    facades[i].addEventListener('click', function(e){
+      e.preventDefault();
+      var wrap = this.parentNode;
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + wrap.getAttribute('data-video') + '?autoplay=1';
+      frame.title = this.getAttribute('data-title') || '';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.setAttribute('frameborder', '0');
+      frame.allowFullscreen = true;
+      wrap.innerHTML = '';
+      wrap.appendChild(frame);
+    });
+  }
+})();
+</script>
+</body>
+</html>

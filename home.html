@@ -35,9 +35,9 @@
 <body>
 
 <h1>くみあぷ（PairGen）</h1>
-<p><span class="badge">v1.2.29</span><span class="badge">対応 iOS v1.32.0</span></p>
+<p><span class="badge">v1.2.30</span><span class="badge">対応 iOS v1.34.0</span></p>
 <div class="note">⚠️ This help is available in Japanese only. Please use your browser's auto-translate feature.</div>
-<p>くみあぷ（PairGen）はバドミントン・テニスなどのダブルス競技向けに、組み合わせを自動生成する Android と iOS のアプリです。参加人数とコート数を設定するだけで、重複を最小限に抑えた組み合わせをすぐに生成できます。</p>
+<p>くみあぷ（PairGen）はバドミントン・テニスなどのダブルス競技向けに、組み合わせを自動生成する Android と iOS のアプリです。参加人数とコート数を設定するだけで、重複を最小限に抑えた組み合わせをすぐに生成できます。スコアの記録や結果のシェアのほか、Google ドライブを使った出欠管理との連動にも対応しています。</p>
 
 <nav class="pages">
   <a href="getting-started.html">使ってみよう！</a>
@@ -46,6 +46,7 @@
   <a href="players-tab.html">プレイヤータブ</a>
   <a href="courts-tab.html">コートタブ</a>
   <a href="advanced.html">高度な使い方</a>
+  <a href="attendance-overview.html">Google スプレッドシート連携</a>
   <a href="videos.html"><span class="vid-mark">▶</span>使い方動画</a>
   <a href="update-history.html">更新履歴</a>
   <a href="privacy-policy.html">プライバシーポリシー</a>
@@ -112,6 +113,7 @@
 <ul>
   <li>Android共有シート経由でセッション（プレイヤー・組み合わせ）を他端末に共有</li>
   <li>試合結果をメールで送信</li>
+  <li>Google スプレッドシートで集めた参加者の出欠を、プレイヤー一覧に取り込み（<a href="attendance-overview.html">Google スプレッドシート連携</a>）</li>
 </ul>
 
 <h3>他の端末からも見られるサーバー機能（試験的）</h3>
@@ -136,12 +138,10 @@
   <li>試合結果メール本文は英語のみ（UI本体は多言語対応）</li>
 </ul>
 
-<h2>バージョン 1.2.29 更新内容（v1.2.28 からの変更点）</h2>
-<div class="note">✨ <strong>組み合わせの作り方は v1.2.21 で全面的に生まれ変わりました。</strong>そのラウンドに出る全員をまとめて見たうえで、同じ相手と組む回数がいちばん少なくなる分け方を選びます。「特定の人といつまでも組めない」「同じ人とばかり組んでしまう」といった偏りが大幅に減り、直前のラウンドと同じペアが続けてできることもなくなりました。連続して出ている人から順に休みに回るので、出場機会も均等になります。</div>
-<div class="note">✨ <strong>メンバーの管理方法が大きく変わりました。</strong>グループに入れたメンバーは<strong>自動で保存</strong>されます。グループに入れていないプレイヤーは「その日だけ」の扱いになり、リセットすると消えます。1.2.25 以前にグループに入れずに保存していたメンバーは、「Group1」というグループに入ります（名前はあとから変更できます）。詳しくは<a href="players-tab.html#registered">プレイヤータブ「登録済みと未登録」</a>をご覧ください。</div>
+<h2>バージョン 1.2.30 更新内容（v1.2.29 からの変更点）</h2>
+<div class="note">✨ <strong>出欠を管理する Google スプレッドシートを公開しました。</strong>参加者が Web アプリで入力した出欠を管理できます。（<a href="attendance-overview.html">Google スプレッドシート連携</a>）</div>
 <ul>
-  <li>試合情報を削除すると、デフォルト欠席にしていたプレイヤーが「出場中」に変わってしまう問題を修正しました。削除後も欠席のままになり、ピン留めも解除されます</li>
-  <li>欠席のプレイヤーを出場に戻したとき、欠席の設定が解除されてメンバー情報に保存されるようにしました。ピン留めで出場に戻した場合も同様です</li>
+  <li>Google スプレッドシートの出欠を、プレイヤー一覧に取り込めるようになりました。グループ管理で「Google スプレッドシート」のアドレスを追加して、グループ読込で選ぶと直近のイベントの参加者が読み込まれます（iOS反映）</li>
 </ul>
 
 <script>

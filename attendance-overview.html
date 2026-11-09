@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>くみあぷ (PairGen) – Google スプレッドシート連携（全体像）</title>
+<style>
+  body{font-family:Roboto,"Segoe UI","Helvetica Neue",Arial,sans-serif;max-width:720px;margin:0 auto;padding:24px;color:#1a1a1a;line-height:1.75}
+  h1{font-size:26px;font-weight:700;border-bottom:2px solid #e0e0e0;padding-bottom:10px}
+  h2{font-size:18px;font-weight:600;margin-top:36px;color:#6650a4}
+  h3{font-size:15px;font-weight:600;margin-top:24px}
+  code{background:#f0f0f0;padding:1px 6px;border-radius:4px;font-size:14px}
+  table{border-collapse:collapse;width:100%;margin:12px 0}
+  th,td{border:1px solid #ddd;padding:8px 12px;text-align:left}
+  th{background:#f5f5f5;font-weight:600}
+  .ss img{max-width:100%;border-radius:8px;border:1px solid #ddd;display:block;margin:16px auto}
+  .ss.phone img{max-width:280px}
+  .tip{background:#e8f5e9;border-left:4px solid #4caf50;padding:10px 14px;border-radius:4px;font-size:14px;margin-top:8px}
+  .note{background:#fff8e1;border-left:4px solid #ffc107;padding:10px 14px;border-radius:4px;font-size:14px;margin-top:8px}
+  .back-link{display:inline-block;margin-bottom:8px;font-size:14px}
+  .toc{background:#f5f8fb;border:1px solid #dde6ee;border-radius:8px;padding:14px 20px;margin:16px 0 28px}
+  .toc ul{margin:0;padding-left:20px}
+  .toc li{margin-bottom:4px;font-size:14px}
+  .toc a{color:#6650a4;text-decoration:none}
+  .toc a:hover{text-decoration:underline}
+  .pages{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+  .pages a{border:1px solid #6650a4;border-radius:16px;padding:2px 12px;font-size:14px;text-decoration:none;color:#6650a4}
+  .pages a.current{background:#6650a4;color:#fff}
+  .en{color:#666;font-size:.92em}
+  .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:16px 0}
+  .flow .box{flex:1 1 150px;border:1px solid #dde6ee;background:#f5f8fb;border-radius:8px;padding:10px 12px;font-size:14px}
+  .flow .box b{display:block;color:#6650a4;margin-bottom:2px}
+  .flow .arrow{align-self:center;color:#6650a4;font-weight:700}
+</style>
+</head>
+<body>
+
+<p class="back-link"><a href="home.html">← ホームに戻る</a></p>
+<nav class="pages">
+  <a href="attendance-overview.html" class="current">全体像</a>
+  <a href="attendance-admin.html">管理者の作業</a>
+  <a href="attendance-user.html">ユーザーの作業</a>
+</nav>
+
+<h1>Google スプレッドシート連携</h1>
+
+<nav class="toc">
+<ul>
+  <li><a href="#what">1. できること</a></li>
+  <li><a href="#flow">2. 仕組みと役割</a></li>
+  <li><a href="#status">3. 出欠の反映のされ方</a></li>
+  <li><a href="#reload">4. もう一度読み込むと</a></li>
+  <li><a href="#notes">5. 知っておくこと</a></li>
+  <li><a href="#trouble">6. 困ったとき</a></li>
+  <li><a href="#capacity">7. 想定している規模と、その根拠</a></li>
+</ul>
+</nav>
+
+<h2 id="what">1. できること</h2>
+<p>練習や大会の前に、「今日は誰が来るの？」を確認して、くみあぷ（PairGen）に 1 人ずつ入力し直していませんか。この機能は、その手間をなくします。</p>
+<p><strong>みんなが Web 上の出欠表に「行きます」「行けません」を入力しておくと、くみあぷ（PairGen）がその出欠表を読み取って、来る人だけをプレイヤー一覧に並べてくれます。</strong></p>
+<p>参加者が Web アプリで出欠を入力しておくと、くみあぷ（PairGen）の「グループ読込」だけで、次のイベントの参加者をプレイヤー一覧に取り込めます。名前を 1 人ずつ入力したり、当日に出欠を聞いてチェックを入れ直したりする手間がなくなります。</p>
+<ul>
+  <li>出欠を「出場」「休憩」「欠席」に自動で振り分けます。</li>
+  <li>プレイヤー一覧の見出しに、グループ名とイベントの日付を表示します。</li>
+  <li>Web アプリで登録したレベル（1〜3）も反映されます。</li>
+</ul>
+
+<h3>この方法の良いところと、引き換えのこと</h3>
+<ul>
+  <li><strong>良いところ：</strong>Google のアカウントさえあれば、<strong>無料</strong>で運用できます。普段から使い慣れた Google のサービス（ドライブ・スプレッドシート）の上で動くので、データの置き場所や中身が分かりやすく、専用のサーバーを借りる必要もありません。</li>
+  <li><strong>引き換えのこと：</strong>最初の設定が<strong>少し面倒</strong>です。スプレッドシートのコピー、キーの設定、公開、権限の承認と、パソコンで何段階かの操作が必要です。ただし、これは最初の 1 回だけです。設定が済めば、あとは参加者が出欠を入力し、くみあぷ（PairGen）が読み込むだけです。</li>
+</ul>
+
+<div class="tip"><strong>想定している規模</strong>：週 3 回ほど練習があるグループで、<strong>メンバー 30〜50 人</strong>なら余裕をもって使えます。100 人前後までは使えますが、画面の表示や登録の遅さが目立ち始めます。根拠は<a href="#capacity">7. 想定している規模と、その根拠</a>にあります。</div>
+
+<div class="note"><strong>はじめに必要なもの</strong>
+  <ul>
+    <li>管理者には <strong>Google アカウント</strong>が必要です。</li>
+    <li>最初の設定（スプレッドシートのコピーと公開）は、<strong>パソコンのブラウザ</strong>で行います。スマートフォンやタブレットでは、Apps Script の画面が操作しにくく、設定が難しいためおすすめしません。</li>
+    <li>設定が済んだあとは、参加者の出欠入力も、くみあぷ（PairGen）での読み込みも、スマートフォンだけで行えます。</li>
+  </ul>
+</div>
+
+<h2 id="flow">2. 仕組みと役割</h2>
+<p>登場するのは 3 つです。</p>
+<div class="flow">
+  <div class="box"><b>① 参加者</b>スマートフォンなどで、Web 上の出欠表に出欠を入力する</div>
+  <div class="arrow">→</div>
+  <div class="box"><b>② 出欠表（Web アプリ）</b>入力された出欠をためておく場所。管理者の Google ドライブに置く</div>
+  <div class="arrow">→</div>
+  <div class="box"><b>③ くみあぷ（PairGen）</b>出欠表を読み取って、プレイヤー一覧を作る</div>
+</div>
+<p>② の出欠表は、Google スプレッドシートと、それに付属する Web アプリ（Google Apps Script）でできています。くみあぷ（PairGen）は出欠表を読むだけで、書き込みはしません。</p>
+<p>出欠表は、管理者が最初に 1 回だけ用意します（自分の Google ドライブにコピーして、公開する作業です）。専門的に見えますが、手順どおりに進めれば難しくありません。</p>
+<table>
+  <tr><th>役割</th><th>やること</th><th>ページ</th></tr>
+  <tr><td>管理者（最初に 1 回・パソコンで）</td><td>スプレッドシートをコピーし、公開（デプロイ）して、URL とキーを用意する</td><td><a href="attendance-admin.html">管理者の作業</a></td></tr>
+  <tr><td>管理者（くみあぷ（PairGen）を使う人）</td><td>くみあぷ（PairGen）にグループとして登録し、読み込む</td><td><a href="attendance-user.html#app">ユーザーの作業</a></td></tr>
+  <tr><td>参加者</td><td>Web アプリで名前を登録し、イベントの出欠を入力する</td><td><a href="attendance-user.html#web">ユーザーの作業</a></td></tr>
+</table>
+<p>流れは次のとおりです。</p>
+<ol>
+  <li>管理者がスプレッドシートを用意して公開する</li>
+  <li>管理者が参加者に Web アプリの URL とキー（<code>ACCESS_KEY</code>）を伝える</li>
+  <li>参加者が Web アプリで名前を登録し、イベントの出欠を入力する</li>
+  <li>管理者が くみあぷ（PairGen）の「グループ読込」で、出欠を取り込む</li>
+</ol>
+
+<h2 id="status">3. 出欠の反映のされ方</h2>
+<table>
+  <tr><th>Web アプリでの出欠</th><th>くみあぷ（PairGen）での状態</th></tr>
+  <tr><td>参加</td><td>出場</td></tr>
+  <tr><td>保留</td><td>休憩</td></tr>
+  <tr><td>未回答・不参加</td><td>デフォルト欠席</td></tr>
+</table>
+<p>読み込む対象は、今日以降で一番近いイベント 1 件です（今日のイベントも含みます）。</p>
+<div class="note">今日以降のイベントがまだ登録されていないときは、出欠にかかわらず全員が出場になり、見出しはグループ名だけになります。</div>
+
+<h2 id="reload">4. もう一度読み込むと</h2>
+<ul>
+  <li><strong>同じグループ・同じイベント日</strong>で読み込み直すと、試合の記録（試合数・連続回数・固定ペア・対戦履歴）は残したまま、名前・レベル・出欠だけが更新されます。試合の途中で誰かの出欠が変わったときに使えます。</li>
+  <li>後から Web アプリに加わった人は、一覧の末尾に追加されます。Web アプリから居なくなった人は、消さずにデフォルト欠席になります。</li>
+  <li><strong>別のイベント日、または別のグループ</strong>を読み込むと、一覧が入れ替わります。試合の記録が消えるので、試合が進んでいるときは確認が出ます。</li>
+</ul>
+<div class="tip">更新したあとの変更は、進行中の試合には影響せず、次の組み合わせから反映されます。</div>
+
+<h2 id="notes">5. 知っておくこと</h2>
+<ul>
+  <li>スプレッドシートから取り込んだ人は、くみあぷ（PairGen）のメンバーDB（登録メンバー）には保存されません。読み込むたびにスプレッドシートから作ります。</li>
+  <li>そのためグループ管理で、メンバーを手動で登録することはできません。</li>
+  <li>写真は引き継がれません。</li>
+  <li>くみあぷ（PairGen）から Web アプリへ書き込むことはありません。出欠の入力は Web アプリで行います。</li>
+  <li>2 年より古いイベントと出欠は、Web アプリ側で自動的に削除されます。</li>
+  <li>インターネットに接続していないと読み込めません。</li>
+</ul>
+
+<h2 id="trouble">6. 困ったとき</h2>
+<table>
+  <tr><th>表示</th><th>原因と対処</th></tr>
+  <tr><td>「READ_KEY が正しくありません」</td><td><code>READ_KEY</code> が違うか、未設定です。管理者の Apps Script「スクリプト プロパティ」の値を確認して、くみあぷ（PairGen）のグループ編集（鉛筆アイコン）で入れ直します。</td></tr>
+  <tr><td>「スプレッドシートの URL が正しくありません」</td><td><code>https://</code> で始まる、<code>/exec</code> で終わるウェブアプリの URL を入れます。スプレッドシート自体の URL や、Apps Script エディタの URL ではありません。</td></tr>
+  <tr><td>「スプレッドシートから返されたデータを読み取れませんでした」</td><td>URL が別のページを指している可能性があります。<a href="attendance-admin.html#url">管理者の作業の「URL を確認する」</a>を見直してください。</td></tr>
+  <tr><td>読み込みに時間がかかる</td><td>しばらく使っていないと、最初の 1 回は数秒かかることがあります。</td></tr>
+  <tr><td>出欠が反映されない</td><td>Web アプリで、その人が名前を登録し、イベントの出欠を押しているか確認してください。未回答は欠席になります。</td></tr>
+</table>
+<div class="note"><code>READ_KEY</code> を変えたときは、くみあぷ（PairGen）のグループ編集で新しい値に差し替えます。Apps Script の再デプロイは不要です。鍵が外に漏れたときも、同じ手順で変更できます。</div>
+
+<h2 id="capacity">7. 想定している規模と、その根拠</h2>
+<p>練習が週 3 回あるグループを前提にした見積もりです。<strong>実測ではなく、仕組みからの見積もり</strong>です。出欠データの量の見積もりは、画面を開くときに読む範囲を絞る前の考え方を含みます。Google 側の上限の数値は目安なので、最新の値は Google の公式ドキュメント「Apps Script Quotas」で確認してください。</p>
+
+<h3>メンバー数ごとの見込み</h3>
+<table>
+  <tr><th>メンバー数</th><th>見込み</th></tr>
+  <tr><td>30〜50 人</td><td>余裕</td></tr>
+  <tr><td>100 人前後まで</td><td>使えるが、画面表示や登録の遅さが目立ち始める</td></tr>
+  <tr><td>200 人超</td><td>作り直し（またはデータの読み方の見直し）が必要</td></tr>
+</table>
+
+<h3>データ量の見積もり（2 年保持）</h3>
+<ul>
+  <li>イベントは年に約 156 件（週 3 回）で、2 年分で約 310 件です。</li>
+  <li>出欠の行数は「メンバー数 × イベント数」が上限です（同じ人の出欠は上書きされるので、それ以上は増えません）。</li>
+</ul>
+<table>
+  <tr><th>メンバー数</th><th>出欠データの行数（上限）</th></tr>
+  <tr><td>50 人</td><td>約 1.5 万行</td></tr>
+  <tr><td>100 人</td><td>約 3 万行</td></tr>
+</table>
+
+<h3>遅くなる原因</h3>
+<ol>
+  <li><strong>画面を開くたびに、出欠データを読む。</strong>画面を開いたときに読むのは、<strong>先月 1 日から翌月末日まで</strong>（今日を基準にした、当月の前後 1 か月）のイベントと出欠だけです。ほかの月は、カレンダーでその月を開いたときに、その月の分だけ読み込みます（読み込み中は日付をタップできません）。そのため、データが 2 年分たまっても、画面を開くときの重さはほとんど増えません。出欠を登録するときにも、既存の行を探すために読みます。</li>
+  <li><strong>書き込みは 1 件ずつ順番に処理される。</strong>待てるのは最大 10 秒で、1 件に 1〜2 秒かかります。そのため「練習の案内の直後に 20 人が同時に押す」ような場面では、後ろの人が待たされたり、失敗したりします。50 人規模なら、実際に同時になるのは数人で、ほぼ問題ありません。</li>
+</ol>
+
+<h3>Google の利用量の上限（クォータ）</h3>
+<p>クォータは、Google が Apps Script などに設けている<strong>利用量の上限</strong>です。共用のサーバーを一部の人が使いすぎないための仕組みで、超えるとその日（または一定時間）は実行が失敗します。</p>
+<table>
+  <tr><th>項目</th><th>無料アカウントの目安</th><th>このしくみでの意味</th></tr>
+  <tr><td>1 日の合計実行時間</td><td>約 90 分</td><td>画面を開く・出欠を登録するたびに加算されます。1 回 2 秒なら、1 日 2,000 回以上使えます</td></tr>
+  <tr><td>1 回の実行の最大時間</td><td>6 分</td><td>通常は数秒なので問題ありません</td></tr>
+  <tr><td>同時に動く実行数</td><td>30</td><td>31 人目は待たされるか、失敗します</td></tr>
+  <tr><td>スプレッドシートの作成数など</td><td>1 日あたり上限あり</td><td>データ用ファイルの作成は数回だけなので問題ありません</td></tr>
+</table>
+<ul>
+  <li>アカウントの種類（無料の Gmail か Google Workspace か）で、数値は変わります。</li>
+  <li>超えると「サービスの呼び出し回数が多すぎます」のようなエラーになり、翌日（上限によっては数分〜数時間後）に回復します。週 3 回・50 人程度なら、ふつうは上限に近づきません。</li>
+  <li>くみあぷ（PairGen）の読み込みも、1 回ごとにスプレッドシートを開きます。必要なときだけ読み込み、何度も続けて読み込むのは避けてください。</li>
+</ul>
+<div class="note">Web アプリは、画面を開くときに読むイベントを、先月 1 日〜翌月末日に絞っています。</div>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>くみあぷ (PairGen) – Google スプレッドシート連携（管理者の作業）</title>
+<style>
+  body{font-family:Roboto,"Segoe UI","Helvetica Neue",Arial,sans-serif;max-width:720px;margin:0 auto;padding:24px;color:#1a1a1a;line-height:1.75}
+  h1{font-size:26px;font-weight:700;border-bottom:2px solid #e0e0e0;padding-bottom:10px}
+  h2{font-size:18px;font-weight:600;margin-top:36px;color:#6650a4}
+  h3{font-size:15px;font-weight:600;margin-top:24px}
+  code{background:#f0f0f0;padding:1px 6px;border-radius:4px;font-size:14px}
+  table{border-collapse:collapse;width:100%;margin:12px 0}
+  th,td{border:1px solid #ddd;padding:8px 12px;text-align:left}
+  th{background:#f5f5f5;font-weight:600}
+  .ss img{max-width:100%;border-radius:8px;border:1px solid #ddd;display:block;margin:16px auto}
+  .ss.phone img{max-width:280px}
+  .tip{background:#e8f5e9;border-left:4px solid #4caf50;padding:10px 14px;border-radius:4px;font-size:14px;margin-top:8px}
+  .note{background:#fff8e1;border-left:4px solid #ffc107;padding:10px 14px;border-radius:4px;font-size:14px;margin-top:8px}
+  .back-link{display:inline-block;margin-bottom:8px;font-size:14px}
+  .toc{background:#f5f8fb;border:1px solid #dde6ee;border-radius:8px;padding:14px 20px;margin:16px 0 28px}
+  .toc ul{margin:0;padding-left:20px}
+  .toc li{margin-bottom:4px;font-size:14px}
+  .toc a{color:#6650a4;text-decoration:none}
+  .toc a:hover{text-decoration:underline}
+  .pages{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+  .pages a{border:1px solid #6650a4;border-radius:16px;padding:2px 12px;font-size:14px;text-decoration:none;color:#6650a4}
+  .pages a.current{background:#6650a4;color:#fff}
+  .en{color:#666;font-size:.92em}
+</style>
+</head>
+<body>
+
+<p class="back-link"><a href="home.html">← ホームに戻る</a></p>
+<nav class="pages">
+  <a href="attendance-overview.html">全体像</a>
+  <a href="attendance-admin.html" class="current">管理者の作業</a>
+  <a href="attendance-user.html">ユーザーの作業</a>
+</nav>
+
+<h1>管理者の作業</h1>
+<p>最初に 1 回だけ行う作業です。<a href="attendance-overview.html">全体像</a>を先に読んでおくと分かりやすくなります。</p>
+
+<div class="note"><strong>この作業に必要なもの</strong>
+  <ul>
+    <li><strong>Google アカウント</strong>（管理者のみ。参加者と くみあぷ（PairGen）の利用者には不要です）</li>
+    <li><strong>パソコンのブラウザ</strong>（Chrome などを推奨）。Apps Script のエディタは、スマートフォンやタブレットでは操作が難しいため、<strong>最初の設定は必ずパソコンで行ってください</strong>。</li>
+  </ul>
+</div>
+
+<div class="note">Google の画面は、アカウントの設定によって日本語または英語で表示されます。このページでは、押すボタンを「日本語（English）」の形で併記しています。表示されている言語に合わせて読んでください。</div>
+
+<nav class="toc">
+<ul>
+  <li><a href="#image">この作業のイメージ</a></li>
+  <li><a href="#checklist">0. 作業の流れ</a></li>
+  <li><a href="#copy">1. スプレッドシートをコピーする</a></li>
+  <li><a href="#keys">2. キーを決めて設定する</a></li>
+  <li><a href="#deploy">3. ウェブアプリとして公開（デプロイ）する</a></li>
+  <li><a href="#auth">4. 権限を承認する（1 回目）</a></li>
+  <li><a href="#url">5. URL を確認する</a></li>
+  <li><a href="#auth-web">6. ウェブアプリを開いて権限を承認する（2 回目）</a></li>
+  <li><a href="#check">7. 動作を確認する</a></li>
+  <li><a href="#share">8. 参加者とアプリに渡すもの</a></li>
+  <li><a href="#after">9. 設定後のこと</a></li>
+  <li><a href="#migrate">10. 別の Google アカウントにデータを移行する</a></li>
+  <li><a href="#multi">11. 複数のグループを別のスプレッドシートで扱う</a></li>
+  <li><a href="#update">12. Web アプリをバージョンアップする</a></li>
+</ul>
+</nav>
+
+<h2 id="image">この作業のイメージ</h2>
+<p>Web の設定に慣れていない方向けに、これから行うことをたとえで説明します。専門用語が出てきても、あとの章で 1 つずつ操作を説明するので、ここでは「何をしているのか」だけつかんでください。</p>
+<p>全体としては、<strong>出欠を集めるための Web アプリを、自分の Google ドライブにコピー（「インストール」）して、使えるようにする作業</strong>です。コピーしたものは、自分の Google ドライブに保存され、自分のアカウントで動きます。パソコンにアプリを入れて、初回に許可を出し、ログイン用のパスワードを決めるのと同じ流れです。</p>
+<table>
+  <tr><th>章</th><th>実際の操作</th><th>たとえると</th></tr>
+  <tr><td>1</td><td>スプレッドシートをコピーする</td><td>Web アプリを自分の Google ドライブに<strong>コピー（インストール）</strong>する（配布されている本体を、自分のドライブに取り込む）</td></tr>
+  <tr><td>2</td><td>キー（<code>ACCESS_KEY</code> と <code>READ_KEY</code>）を設定する</td><td><strong>パスワードを決める</strong>（参加者が使うものと、くみあぷ（PairGen）が使うもの）</td></tr>
+  <tr><td>3</td><td>ウェブアプリとして公開（デプロイ）する</td><td>インストールしたアプリを<strong>インターネットに公開</strong>し、<strong>アクセス用の URL（住所）</strong>を発行する</td></tr>
+  <tr><td>4・6</td><td>権限を承認する（1 回目・2 回目）</td><td>スマートフォンのアプリで最初に出る「<strong>〜へのアクセスを許可しますか？</strong>」に、<strong>許可</strong>を出す</td></tr>
+  <tr><td>5</td><td>URL を確認する</td><td>公開したアプリの<strong>住所を控える</strong></td></tr>
+  <tr><td>7</td><td>動作を確認する</td><td>アプリを<strong>起動して、動くか試す</strong></td></tr>
+  <tr><td>8</td><td>参加者とアプリに渡す</td><td>住所とパスワードを<strong>参加者に伝え</strong>、くみあぷ（PairGen）にも<strong>登録</strong>する</td></tr>
+</table>
+<p>この作業は、基本的に<strong>最初の 1 回だけ</strong>です。済んでしまえば、あとは参加者が Web アプリで出欠を入力し、くみあぷ（PairGen）がそれを読み込むだけになります。</p>
+
+<h2 id="checklist">0. 作業の流れ</h2>
+<ol>
+  <li>スプレッドシートをコピーする</li>
+  <li>スクリプト プロパティに <code>ACCESS_KEY</code> と <code>READ_KEY</code> を設定する</li>
+  <li>ウェブアプリとして公開（デプロイ）する</li>
+  <li>権限を承認する（1 回目）</li>
+  <li>ウェブアプリの URL を控える</li>
+  <li>管理者が、ウェブアプリを自分で開いて権限を承認する（2 回目）</li>
+  <li>ウェブアプリが開けることを確認する</li>
+  <li>参加者に URL と <code>ACCESS_KEY</code> を伝え、くみあぷ（PairGen）に URL と <code>READ_KEY</code> を登録する</li>
+</ol>
+<p>作業には Google アカウントとパソコンのブラウザが必要です。参加者と くみあぷ（PairGen）の利用者に Google アカウントは要りません。</p>
+
+<h2 id="copy">1. スプレッドシートをコピーする</h2>
+<p>次のリンクを開きます。Google にログインした状態で開いてください。</p>
+<p><a href="https://docs.google.com/spreadsheets/d/1XM9WHvtcn899otMyBSaHIqyjBdwmlK_2CaaVeJQGL3k/copy">https://docs.google.com/spreadsheets/d/1XM9WHvtcn899otMyBSaHIqyjBdwmlK_2CaaVeJQGL3k/copy</a></p>
+<p>「ドキュメントのコピー」の画面が出ます。<strong>「コピーを作成（Make a copy）」</strong>をクリックします。</p>
+<div class="ss"><img src="images/attendance-copy.png" alt="ドキュメントのコピー画面"></div>
+<p>「添付の Apps Script ファイルと機能もコピーされます」と出ますが、そのままで問題ありません。Web アプリの本体が、このスクリプトです。</p>
+<p>コピーされたスプレッドシートが開いたら、メニューの<strong>「拡張機能（Extensions）」→「Apps Script」</strong>をクリックします。Apps Script のエディタが新しいタブで開きます。</p>
+
+<h2 id="keys">2. キーを決めて設定する</h2>
+<p>キーは 2 種類あります。<strong>別の値</strong>にしてください。</p>
+<table>
+  <tr><th>キー</th><th>使う人</th><th>役割</th></tr>
+  <tr><td><code>ACCESS_KEY</code></td><td>参加者</td><td>Web アプリを開くときに入力する合言葉です</td></tr>
+  <tr><td><code>READ_KEY</code></td><td>くみあぷ（PairGen）</td><td>くみあぷ（PairGen）がデータを読むための鍵です（読み取り専用）</td></tr>
+</table>
+<p>設定の手順です。</p>
+<ol>
+  <li>エディタの左側の<strong>歯車アイコン「プロジェクトの設定（Project Settings）」</strong>をクリックします。</li>
+  <li>下へスクロールして、「スクリプト プロパティ（Script Properties）」を探します。</li>
+  <li><strong>「スクリプト プロパティを追加（Add script property）」</strong>をクリックし、プロパティに <code>ACCESS_KEY</code>、値に決めた合言葉を入力します。</li>
+  <li>もう 1 行追加して、プロパティに <code>READ_KEY</code>、値に別の文字列を入力します。</li>
+  <li><strong>「スクリプト プロパティを保存（Save script properties）」</strong>をクリックします。</li>
+</ol>
+<div class="ss"><img src="images/attendance-properties.png" alt="スクリプト プロパティの設定"></div>
+<div class="note">プロパティ名は、半角の大文字で <code>ACCESS_KEY</code>、<code>READ_KEY</code> と正確に入力します。<code>READ_KEY</code> が未設定のままだと、くみあぷ（PairGen）からの読み込みはすべて拒否されます。</div>
+<div class="tip">キーは推測されにくい文字列にしてください。ここでは例として簡単な言葉を使っていますが、実際の運用では英数字を組み合わせたものをおすすめします。</div>
+
+<h2 id="deploy">3. ウェブアプリとして公開（デプロイ）する</h2>
+<ol>
+  <li>エディタ右上の<strong>「デプロイ（Deploy）」</strong>をクリックし、<strong>「新しいデプロイ（New deployment）」</strong>を選びます。</li>
+  <li>「種類の選択（Select type）」の歯車アイコンから<strong>「ウェブアプリ（Web app）」</strong>を選びます。</li>
+  <li>次のように設定します。
+    <ul>
+      <li>「次のユーザーとして実行（Execute as）」: <strong>「自分（Me）」</strong></li>
+      <li>「アクセスできるユーザー（Who has access）」: <strong>「全員（Anyone）」</strong></li>
+    </ul>
+  </li>
+  <li><strong>「デプロイ（Deploy）」</strong>をクリックします。</li>
+</ol>
+<div class="ss"><img src="images/attendance-deploy-menu.png" alt="「デプロイ」メニュー"></div>
+<div class="note">「アクセスできるユーザー」を「全員」にしても、データを読むには <code>ACCESS_KEY</code> または <code>READ_KEY</code> が必要です。キーを知らない人はデータを見られません。</div>
+
+<h2 id="auth">4. 権限を承認する（1 回目）</h2>
+<p>Google から権限の承認を求められる場面が、<strong>2 回</strong>あります。どちらも手順は同じで、<strong>2 回とも必ず管理者が行ってください</strong>。ここでは 1 回目（デプロイ直後）を説明します。2 回目は「<a href="#auth-web">6. ウェブアプリを開いて権限を承認する</a>」です。</p>
+<ol>
+  <li>デプロイ直後に、「アクセスを承認（Authorize access）」と出るので、クリックします。</li>
+  <li>使用するアカウントを選びます。</li>
+  <li>「このアプリは Google で確認されていません（Google hasn't verified this app）」と出ます。これは、自分で作った Apps Script に必ず出る表示で、異常ではありません。<strong>「詳細（Advanced）」</strong>をクリックします。</li>
+  <li>下に出てくる<strong>「PairGenAttendance（安全ではないページ）に移動（Go to PairGenAttendance (unsafe)）」</strong>をクリックします。</li>
+  <li>「PairGenAttendance が Google アカウントへのアクセスを求めています（wants to access your Google Account）」と出ます。内容を確認し、下までスクロールして<strong>「次へ（Continue）」</strong>をクリックします。もう一度「次へ（Continue）」が出たら、同じようにクリックします。</li>
+</ol>
+<div class="ss"><img src="images/attendance-unverified.png" alt="「このアプリは Google で確認されていません」の画面"></div>
+<p>画面は、アカウントの言語設定によって日本語か英語で出ます。「詳細（Advanced）」は目立たない小さなリンクで、「安全なページに戻る（Back to safety）」のボタンの反対側にあります。間違えて「安全なページに戻る」を押さないよう注意してください。</p>
+<div class="note">承認の画面には「Google スプレッドシートのすべてのスプレッドシートの表示、編集、作成、削除（See, edit, create, and delete all your Google Sheets spreadsheets）」と表示されます。Google の権限は「このスプレッドシートだけ」に絞れないため、あなたの Google アカウントのスプレッドシート全体が対象として表示されます。気になる場合は、この Web アプリ専用の Google アカウントを作って、そのアカウントで作業することをおすすめします。</div>
+
+<h2 id="url">5. URL を確認する</h2>
+<p>デプロイが終わると、「新しいデプロイ（New deployment）」のダイアログに<strong>「ウェブアプリ（Web app）」の URL</strong>が表示されます。<strong>「コピー（Copy）」</strong>をクリックして、控えておきます。</p>
+<div class="ss"><img src="images/attendance-deploy-done.png" alt="デプロイ完了のダイアログ"></div>
+<ul>
+  <li>URL は <code>https://script.google.com/macros/s/…/exec</code> のように、<strong><code>/exec</code> で終わります</strong>。</li>
+  <li>ダイアログを閉じてしまったときは、「デプロイ（Deploy）」→<strong>「デプロイを管理（Manage deployments）」</strong>から、もう一度確認できます。</li>
+  <li>「デプロイ ID」ではなく、「ウェブアプリ」の URL を使います。</li>
+</ul>
+<div class="note">スプレッドシート自体の URL や、Apps Script エディタの URL ではありません。くみあぷ（PairGen）に入れる URL は、必ずこのウェブアプリの URL です。</div>
+
+<h2 id="auth-web">6. ウェブアプリを開いて権限を承認する（2 回目）</h2>
+<p>デプロイしたら、<strong>必ず管理者が、控えたウェブアプリの URL を自分のブラウザで開いてください</strong>。</p>
+<div class="note">この承認は、Web アプリを初めて開いて、データ用スプレッドシートが作られるときに求められます。<strong>すでにデフォルトのデータファイルがある場合（<a href="#migrate-b">10 の手順 B</a> や <a href="#update">12 のバージョンアップ</a>でつないだとき）は、この承認はおそらくスキップされます。</strong>画面が出なければ、そのまま次へ進んでください。出たときは、この章の手順で承認します。</div>
+<ol>
+  <li>URL を開くと、「Authorization required」という画面が出ます。<strong>「Review permissions（権限を確認）」</strong>をクリックします。</li>
+  <li>「<a href="#auth">4. 権限を承認する（1 回目）</a>」の手順 2〜5（アカウントの選択、「詳細（Advanced）」、「移動（Go to …）」、「次へ（Continue）」）をもう一度行います。</li>
+  <li>承認が終わると、ウェブアプリの画面が表示されます。</li>
+</ol>
+<div class="ss"><img src="images/attendance-authorization.png" alt="「Authorization required」の画面"></div>
+<div class="note">この 2 回目の承認を済ませておかないと、参加者がウェブアプリを開いたときや、くみあぷ（PairGen）が読み込むときに、エラーになって使えません。参加者や他の人には、この承認は求められません（管理者が済ませれば十分です）。</div>
+
+<h2 id="check">7. 動作を確認する</h2>
+<ol>
+  <li>ウェブアプリの画面を開きます（6 で開いた画面のままで構いません）。</li>
+  <li>初回は「合言葉入力」の入力欄が出るので、<code>ACCESS_KEY</code> に設定した値を入れて<strong>「開く」</strong>をクリックします。</li>
+  <li>カレンダーとユーザー登録の画面が表示されれば成功です。</li>
+</ol>
+<p>表示されないときは、<a href="#auth">4. 権限を承認する（1 回目）</a>と、<a href="#auth-web">6. ウェブアプリを開いて権限を承認する（2 回目）</a>をやり直してください。</p>
+
+<h2 id="share">8. 参加者とアプリに渡すもの</h2>
+<table>
+  <tr><th>渡す相手</th><th>渡すもの</th></tr>
+  <tr><td>参加者</td><td>ウェブアプリの URL と <code>ACCESS_KEY</code></td></tr>
+  <tr><td>くみあぷ（PairGen）の管理者の端末</td><td>ウェブアプリの URL と <code>READ_KEY</code></td></tr>
+</table>
+<p><code>READ_KEY</code> は、くみあぷ（PairGen）を使う人にだけ伝えます。参加者には <code>ACCESS_KEY</code> だけを伝えれば足ります。</p>
+<p>次は、<a href="attendance-user.html">ユーザーの作業</a>に進んでください。</p>
+
+<h2 id="after">9. 設定後のこと</h2>
+<ul>
+  <li><strong>キーを変えたい・漏れた</strong>: スクリプト プロパティの値を変えて保存するだけで、すぐ反映されます。再デプロイは要りません。<code>READ_KEY</code> を変えたら、くみあぷ（PairGen）のグループ編集で新しい値に直します。<code>ACCESS_KEY</code> を変えたら、参加者に新しい値を伝えます。</li>
+  <li><strong>スクリプトのコードを変更したとき</strong>: コードを変えたときだけ、再デプロイが必要です。何も変えていなければ不要です。</li>
+  <li><strong>データの保管</strong>: 出欠データは、あなたの Google ドライブのスプレッドシートに保存されます。2 年より古いイベントと出欠は自動で削除されます。</li>
+</ul>
+
+<h2 id="migrate">10. 別の Google アカウントにデータを移行する</h2>
+<p>管理者が交代するときや、アカウントを変えたいときの手順です。出欠のデータ（メンバー、イベント、出欠、場所）は、スプレッドシートに付属する Web アプリ本体とは<strong>別のファイル</strong>（データ用スプレッドシート）に保存されています。このファイルは、最初に Web アプリを開いたときに、デプロイした管理者の Google ドライブへ自動的に作られます。</p>
+<table>
+  <tr><th>やり方</th><th>引き継がれるもの</th><th>向いているケース</th></tr>
+  <tr><td>A. 新しいアカウントで、1〜9 を最初からやり直す</td><td>なし（メンバーとイベントは空から始まります）</td><td>データが少ない、または作り直してよい</td></tr>
+  <tr><td>B. データ用スプレッドシートを移して、新しいアカウントの Web アプリにつなぐ</td><td>メンバー、イベント、出欠、場所</td><td>これまでの記録を残したい</td></tr>
+</table>
+<div class="note">どちらの場合も、<strong>Web アプリの URL が変わります</strong>。参加者には新しい URL と <code>ACCESS_KEY</code> を伝え、くみあぷ（PairGen）のグループ編集（鉛筆アイコン）で URL と <code>READ_KEY</code> を新しい値に直してください。</div>
+
+<h3 id="migrate-b">B. データを残して移行する</h3>
+<p><strong>古いアカウント</strong>での作業</p>
+<ol>
+  <li>データ用スプレッドシートを探します。Apps Script のエディタで、上部の関数の選択から<strong>「setup」</strong>を選び、<strong>「実行（Run）」</strong>をクリックします。「実行ログ（Execution log）」に、データ用スプレッドシートの URL が表示されます。または、Google ドライブで <code>PairGenAttendance-data</code>（コピーしたスプレッドシートの <code>data_link</code> シートの A2 に書かれている名前）を検索しても見つかります。</li>
+  <li>そのファイルを開き、右上の<strong>「共有（Share）」</strong>から、新しいアカウントのメールアドレスを追加します（権限は「閲覧者」で足ります）。</li>
+</ol>
+<p><strong>新しいアカウント</strong>での作業</p>
+<ol start="3">
+  <li>共有されたデータ用スプレッドシートを開き、メニューの<strong>「ファイル（File）」→「コピーを作成（Make a copy）」</strong>でコピーします。コピーは新しいアカウントが所有者になります。</li>
+  <li>コピーしたファイルを開き、アドレスバーの URL から<strong>ファイル ID</strong>を控えます。<code>https://docs.google.com/spreadsheets/d/</code> の後ろから、次の <code>/</code> の手前までです。</li>
+  <li>「<a href="#copy">1. スプレッドシートをコピーする</a>」から「<a href="#deploy">3. ウェブアプリとして公開（デプロイ）する</a>」までを、新しいアカウントで行います（キーの設定と、デプロイまで）。</li>
+  <li><strong>ウェブアプリを開く前に</strong>、「プロジェクトの設定（Project Settings）」の「スクリプト プロパティ（Script Properties）」へ、次のプロパティを追加します。
+    <ul>
+      <li>プロパティ: <code>DATA_MAP</code></li>
+      <li>値: <code>{"PairGenAttendance-data":"控えたファイルID"}</code></li>
+    </ul>
+    <code>PairGenAttendance-data</code> の部分は、コピーしたスプレッドシートの <code>data_link</code> シートの A2 に書かれている名前（空のときは <code>PairGenAttendance-data</code>）に合わせます。<strong>「スクリプト プロパティを保存」</strong>を忘れずに。</li>
+  <li>「<a href="#auth">4. 権限を承認する（1 回目）</a>」から「<a href="#check">7. 動作を確認する</a>」までを行います（データ用スプレッドシートがすでにあるので、「6」の承認はおそらくスキップされます）。</li>
+  <li>カレンダーに、古いアカウントのイベントとメンバーが表示されれば成功です。</li>
+</ol>
+<div class="note">うっかり手順 6 より前にウェブアプリを開いてしまうと、空のデータ用スプレッドシートが新しく作られます。その場合は、<code>DATA_MAP</code> の値を上の形に書き換えれば、控えたファイルにつながります。</div>
+<div class="tip">メンバーの ID（U001 など）も引き継がれるので、くみあぷ（PairGen）で同じイベントを読み込み直すと、同じ人として更新されます。</div>
+<p><strong>最後に</strong>、古いアカウントの Web アプリは、デプロイを<strong>「アーカイブ（Archive）」</strong>（「デプロイを管理」から）して停止しておくと、古い URL で出欠が書き込まれてデータが分かれるのを防げます。</p>
+<div class="note">この手順は、Web アプリのしくみに沿って組み立てたものです。大事なデータを移すときは、先に古いデータ用スプレッドシートの「コピーを作成」で控えを取ってから行ってください。</div>
+
+<h2 id="multi">11. 複数のグループを別のスプレッドシートで扱う</h2>
+<p>1 つの Web アプリは、1 つのグループ（1 組のメンバーとイベント）のためのものです。曜日や団体ごとに参加者もイベントも分けたいときは、<strong>グループごとにスプレッドシートをコピーして、別の Web アプリを用意</strong>します。</p>
+<ol>
+  <li>「<a href="#copy">1. スプレッドシートをコピーする</a>」を、グループの数だけ繰り返します。コピーの名前は、グループが分かる名前（例: 「出欠 土曜」）に変えておくと便利です。</li>
+  <li>コピーごとに、「<a href="#keys">2. キーを決めて設定する</a>」を行います。<code>ACCESS_KEY</code> は、グループごとに別の値にするのがおすすめです（他のグループの Web アプリに入れなくなります）。<code>READ_KEY</code> は、同じ値でも別の値でも構いません。</li>
+  <li>おすすめ: コピーしたスプレッドシートの <code>data_link</code> シートの A2 を、グループが分かる名前（例: <code>土曜-data</code>）に書き換えておきます。Google ドライブに作られるデータ用スプレッドシートの名前になるので、どのグループのファイルか区別しやすくなります。<strong>ウェブアプリを最初に開く前</strong>に書き換えてください。</li>
+  <li>コピーごとに、「<a href="#deploy">3. デプロイ</a>」、「<a href="#auth">4. 権限の承認（1 回目）</a>」、「<a href="#url">5. URL を確認する</a>」、「<a href="#auth-web">6. ウェブアプリを開いて承認（2 回目）</a>」、「<a href="#check">7. 動作確認</a>」を行います。<strong>承認は、コピーごとに必要です。</strong></li>
+  <li>くみあぷ（PairGen）の「グループ管理」で、<strong>Google スプレッドシート</strong>のグループを、Web アプリごとに追加します（グループ名、その Web アプリの URL、その <code>READ_KEY</code>）。</li>
+  <li>参加者には、<strong>所属するグループの Web アプリの URL と <code>ACCESS_KEY</code></strong> を伝えます。</li>
+</ol>
+<div class="note">グループごとにデータは完全に分かれます。コピーしたスプレッドシートには、元のスクリプトプロパティ（キー）やデータは引き継がれず、初めて開いたときに新しい空のデータ用スプレッドシートが作られます。メンバーやイベントを移したいときは、<a href="#migrate-b">10 の手順 B</a> が参考になります。</div>
+<div class="tip">1 人が複数のグループに参加するときは、それぞれの Web アプリで名前を登録します。</div>
+
+<h2 id="update">12. Web アプリをバージョンアップする</h2>
+<p>Web アプリの新しい版が出たときは、<strong>古いスプレッドシートを削除し、新しいスプレッドシートをコピーして、デプロイし直します</strong>。出欠のデータは別ファイル（データ用スプレッドシート）にあるので、そのファイルを新しい Web アプリにつなげば、メンバーやイベントはそのまま使えます。</p>
+<div class="note"><strong>先に確認</strong>：キーやデータ用ファイルの情報は、削除するスプレッドシートの<strong>スクリプト プロパティ</strong>に入っています。削除すると一緒に消えるので、<strong>削除する前に必ず控えてください</strong>。控えないまま削除すると、データ用スプレッドシートへのつなぎ直しができなくなり、空のデータで始まってしまいます。</div>
+<h3>古い Web アプリの作業（削除する前）</h3>
+<ol>
+  <li>古いスプレッドシートの Apps Script を開き、「プロジェクトの設定（Project Settings）」の「スクリプト プロパティ（Script Properties）」を表示します。</li>
+  <li>次の 3 つの<strong>値</strong>を控えます。
+    <ul>
+      <li><code>ACCESS_KEY</code></li>
+      <li><code>READ_KEY</code></li>
+      <li><code>DATA_MAP</code>（<code>{"PairGenAttendance-data":"…"}</code> のような文字列。全体をそのまま控えます）</li>
+    </ul>
+  </li>
+  <li>念のため、データ用スプレッドシート（Google ドライブの <code>PairGenAttendance-data</code>）を、「ファイル」→「コピーを作成」で、バックアップしておくと安心です。</li>
+  <li>古いスプレッドシートを、Google ドライブで削除（ゴミ箱へ）します。</li>
+</ol>
+<h3>新しい Web アプリの作業</h3>
+<ol start="5">
+  <li>「<a href="#copy">1. スプレッドシートをコピーする</a>」から「<a href="#deploy">3. ウェブアプリとして公開（デプロイ）する</a>」までを行います。キーは、手順 2 で控えた <code>ACCESS_KEY</code> と <code>READ_KEY</code> を同じ値で入れます。</li>
+  <li><strong>ウェブアプリを開く前に</strong>、スクリプト プロパティに、手順 2 で控えた <code>DATA_MAP</code> を同じ値で追加し、<strong>「スクリプト プロパティを保存」</strong>します。</li>
+  <li>「<a href="#auth">4. 権限を承認する（1 回目）</a>」と「<a href="#url">5. URL を確認する</a>」を行います。</li>
+  <li>ウェブアプリを開きます。データ用スプレッドシートはすでにあるので、「<a href="#auth-web">6. ウェブアプリを開いて権限を承認する（2 回目）</a>」の承認は、おそらく求められません。求められたときは、6 の手順で承認してください。</li>
+  <li>カレンダーに、これまでのイベントとメンバーが表示されれば成功です（「<a href="#check">7. 動作を確認する</a>」）。</li>
+</ol>
+<div class="note">Web アプリの <strong>URL は新しくなります</strong>。参加者には新しい URL を伝え、くみあぷ（PairGen）のグループ編集（鉛筆アイコン）で URL を直してください。<code>ACCESS_KEY</code> と <code>READ_KEY</code> を同じ値にしておけば、キーは変わりません。</div>
+<div class="tip">手順 6 より前にウェブアプリを開いてしまうと、空のデータ用スプレッドシートが新しく作られます。その場合は、<code>DATA_MAP</code> の値を控えた形に書き換えれば、元のファイルにつながります（<a href="#migrate-b">10 の手順 B</a> と同じです）。</div>
+
+</body>
+</html>
