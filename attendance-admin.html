@@ -24,6 +24,9 @@
   .pages a{border:1px solid #6650a4;border-radius:16px;padding:2px 12px;font-size:14px;text-decoration:none;color:#6650a4}
   .pages a.current{background:#6650a4;color:#fff}
   .en{color:#666;font-size:.92em}
+  .tpl{position:relative;background:#f6f8fa;border:1px solid #d0d7de;border-radius:8px;padding:14px 16px;margin:12px 0;font-size:14px;white-space:pre-wrap;line-height:1.7}
+  .copy-btn{display:inline-block;margin:0 0 4px;padding:4px 12px;border:1px solid #6650a4;border-radius:14px;background:#fff;color:#6650a4;font-size:13px;cursor:pointer}
+  .copy-btn:hover{background:#f3eefb}
 </style>
 </head>
 <body>
@@ -186,6 +189,37 @@
   <tr><td>くみあぷ（PairGen）の管理者の端末</td><td>ウェブアプリの URL と <code>READ_KEY</code></td></tr>
 </table>
 <p><code>READ_KEY</code> は、くみあぷ（PairGen）を使う人にだけ伝えます。参加者には <code>ACCESS_KEY</code> だけを伝えれば足ります。</p>
+<h3 id="share-template">参加者への案内文の例</h3>
+<p>LINE やメールで参加者に送るときの文面の例です。<strong>（　）の部分</strong>を、自分の値に書き換えてから送ってください。<code>READ_KEY</code> は書かないでください。</p>
+<button type="button" class="copy-btn" id="copyTpl">案内文をコピー</button>
+<div class="tpl" id="tpl">【出欠入力のお願い】
+練習の出欠は、下の Web ページで入力してください。
+
+URL：（ウェブアプリの URL）
+合言葉：（ACCESS_KEY）
+
+■ 使い方
+1. 初めての方は、「新規ユーザー登録」で名前とレベルを登録します
+2. 「利用ユーザーを選択」で自分の名前を選びます
+3. カレンダーで練習日をタップし、「参加」「不参加」「保留」のどれかを押します
+
+※ 予定が決まらないときは「保留」にしてください
+※ 画面の上に「このアプリケーションは Google Apps Script のユーザーによって作成されたものです」と出ますが、このグループの管理者が用意したものなので、そのままお使いください
+※ ブックマークしておくと、次から開きやすくなります</div>
+<div class="note">合言葉（<code>ACCESS_KEY</code>）は、グループの外には知られないように送ってください。LINE のオープンチャットなど、誰でも入れる場所には貼らないでください。</div>
+<script>
+(function(){
+  var b=document.getElementById('copyTpl'), t=document.getElementById('tpl');
+  if(!b||!t) return;
+  b.addEventListener('click',function(){
+    var text=t.innerText;
+    function done(ok){ b.textContent = ok ? 'コピーしました' : 'コピーできませんでした。文面を選択してコピーしてください'; setTimeout(function(){ b.textContent='案内文をコピー'; },2500); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(function(){done(true);},function(){done(false);}); }
+    else done(false);
+  });
+})();
+</script>
+
 <p>次は、<a href="attendance-user.html">ユーザーの作業</a>に進んでください。</p>
 
 <h2 id="after">9. 設定後のこと</h2>
