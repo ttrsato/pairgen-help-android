@@ -9,6 +9,10 @@
   ul{padding-left:20px}
   li{margin-bottom:4px}
   .badge{display:inline-block;background:#6650a4;color:#fff;font-size:12px;font-weight:600;border-radius:5px;padding:2px 8px;margin-right:6px}
+  .store-badges{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:8px 0}
+  .store-badges img{display:block}
+  .store-badges .apple{height:44px}
+  .store-badges .google{height:44px}
   .note{background:#fff8e1;border-left:4px solid #ffc107;padding:10px 14px;border-radius:4px;font-size:14px;margin-top:8px}
   .ss img{max-width:100%;border-radius:8px;border:1px solid #ddd;display:block;margin:16px auto}
   nav.pages{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 28px}
@@ -38,9 +42,9 @@
 <body>
 
 <h1>くみあぷ（PairGen）</h1>
-<p><span class="badge">v1.2.29</span><span class="badge">対応 iOS v1.32.0</span></p>
+<p><span class="badge">v1.2.31</span><span class="badge">対応 iOS v1.35.0</span></p>
 <div class="note">⚠️ This help is available in Japanese only. Please use your browser's auto-translate feature.</div>
-<p>くみあぷ（PairGen）はバドミントン・テニスなどのダブルス競技向けに、組み合わせを自動生成する Android と iOS のアプリです。参加人数とコート数を設定するだけで、重複を最小限に抑えた組み合わせをすぐに生成できます。</p>
+<p>くみあぷ（PairGen）はバドミントン・テニスなどのダブルス競技向けに、組み合わせを自動生成する Android と iOS のアプリです。参加人数とコート数を設定するだけで、重複を最小限に抑えた組み合わせをすぐに生成できます。スコアの記録や結果のシェアのほか、Google ドライブを使った出欠管理との連動にも対応しています。</p>
 
 <nav class="pages">
   <a href="getting-started.html">使ってみよう！</a>
@@ -49,6 +53,7 @@
   <a href="players-tab.html">プレイヤータブ</a>
   <a href="courts-tab.html">コートタブ</a>
   <a href="advanced.html">高度な使い方</a>
+  <a href="attendance-overview.html">Google スプレッドシート連携</a>
   <a href="videos.html"><span class="vid-mark">▶</span>使い方動画</a>
   <a href="update-history.html">更新履歴</a>
   <a href="privacy-policy.html">プライバシーポリシー</a>
@@ -58,6 +63,13 @@
   <figure class="phone"><img src="images/home-main.png" alt="スマートフォンのメイン画面"><figcaption>スマートフォン</figcaption></figure>
   <figure class="tablet"><img src="images/home-tablet.png" alt="タブレットのメイン画面（2ペイン表示）"><figcaption>タブレット</figcaption></figure>
 </div>
+
+<h2>ダウンロード</h2>
+<p class="store-badges">
+  <a href="https://apps.apple.com/jp/app/id1286614810"><img class="apple" src="images/badge-appstore.svg" alt="App Store からダウンロード（iOS版）"></a>
+  <a href="https://play.google.com/store/apps/details?id=com.ttrsato.pairgen"><img class="google" src="images/badge-googleplay.png" alt="Google Play で手に入れよう（Android版）"></a>
+</p>
+<p>iOS版のヘルプはこちら: <a href="https://ttrsato.github.io/pairgen-help/home.html">https://ttrsato.github.io/pairgen-help/home.html</a></p>
 
 <h2>使い方動画</h2>
 <p>※ iOS 版の紹介動画ですが、基本的な操作は Android 版でも同じです。</p>
@@ -115,6 +127,7 @@
 <ul>
   <li>Android共有シート経由でセッション（プレイヤー・組み合わせ）を他端末に共有</li>
   <li>試合結果をメールで送信</li>
+  <li>Google スプレッドシートで集めた参加者の出欠を、プレイヤー一覧に取り込み（<a href="attendance-overview.html">Google スプレッドシート連携</a>）</li>
 </ul>
 
 <h3>他の端末からも見られるサーバー機能（試験的）</h3>
@@ -139,12 +152,27 @@
   <li>試合結果メール本文は英語のみ（UI本体は多言語対応）</li>
 </ul>
 
-<h2>バージョン 1.2.29 更新内容（v1.2.28 からの変更点）</h2>
-<div class="note">✨ <strong>組み合わせの作り方は v1.2.21 で全面的に生まれ変わりました。</strong>そのラウンドに出る全員をまとめて見たうえで、同じ相手と組む回数がいちばん少なくなる分け方を選びます。「特定の人といつまでも組めない」「同じ人とばかり組んでしまう」といった偏りが大幅に減り、直前のラウンドと同じペアが続けてできることもなくなりました。連続して出ている人から順に休みに回るので、出場機会も均等になります。</div>
-<div class="note">✨ <strong>メンバーの管理方法が大きく変わりました。</strong>グループに入れたメンバーは<strong>自動で保存</strong>されます。グループに入れていないプレイヤーは「その日だけ」の扱いになり、リセットすると消えます。1.2.25 以前にグループに入れずに保存していたメンバーは、「Group1」というグループに入ります（名前はあとから変更できます）。詳しくは<a href="players-tab.html#registered">プレイヤータブ「登録済みと未登録」</a>をご覧ください。</div>
+<h2>バージョン 1.2.31 更新内容（v1.2.30 からの変更点）</h2>
+<div class="note">✨ <strong>グループを読み込むとき、今のプレイヤーに「追加」できるようになりました。</strong>「入れ替え」と選び分けられます。（<a href="players-tab.html">プレイヤータブ</a>）</div>
 <ul>
-  <li>試合情報を削除すると、デフォルト欠席にしていたプレイヤーが「出場中」に変わってしまう問題を修正しました。削除後も欠席のままになり、ピン留めも解除されます</li>
-  <li>欠席のプレイヤーを出場に戻したとき、欠席の設定が解除されてメンバー情報に保存されるようにしました。ピン留めで出場に戻した場合も同様です</li>
+  <li>同じ名前のプレイヤーがいると、名前が紫色になり、⚠ マークが付くようになりました（iOS反映）</li>
+  <li>中身が空のスプレッドシートを読み込んでも、プレイヤー一覧が消えないようになりました（iOS反映）</li>
+  <li>ゲームポイントの最初の設定を 21 点から 15 点にしました。すでに設定している方は、そのままです（iOS反映）</li>
+</ul>
+
+<h2 id="web-version">Google スプレッドシート（出欠管理 Web アプリ）のバージョン</h2>
+<p>現在のバージョンは <strong>v1.1.0</strong>（最新）です。Web アプリのカレンダーの右下にも表示されます。確認のしかたと、新しい版が出たときの更新手順は、<a href="attendance-admin.html#version">管理者の作業の「13. Web アプリのバージョンを確認する」</a>を見てください。</p>
+<h3>v1.1.0 更新内容</h3>
+<ul>
+  <li>読み込みに時間がかかったときは、自動で 1 回やり直すようになりました</li>
+  <li>それでも読み込めないときは、「読み込めませんでした」と表示されるようになりました</li>
+</ul>
+<h3>v1.0.0 更新内容</h3>
+<ul>
+  <li>最初の公開版です</li>
+  <li>参加者がメンバー登録・イベントの出欠入力を行い、管理者がイベントを管理できます</li>
+  <li>くみあぷ（PairGen）から、直近のイベントの参加者をプレイヤー一覧に読み込めます（くみあぷ v1.2.30 以降）</li>
+  <li>カレンダーの右下に、Web アプリのバージョンが表示されます</li>
 </ul>
 
 <script>
