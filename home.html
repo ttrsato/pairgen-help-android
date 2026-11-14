@@ -9,6 +9,10 @@
   ul{padding-left:20px}
   li{margin-bottom:4px}
   .badge{display:inline-block;background:#6650a4;color:#fff;font-size:12px;font-weight:600;border-radius:5px;padding:2px 8px;margin-right:6px}
+  .store-badges{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:8px 0}
+  .store-badges img{display:block}
+  .store-badges .apple{height:44px}
+  .store-badges .google{height:44px}
   .note{background:#fff8e1;border-left:4px solid #ffc107;padding:10px 14px;border-radius:4px;font-size:14px;margin-top:8px}
   .ss img{max-width:100%;border-radius:8px;border:1px solid #ddd;display:block;margin:16px auto}
   nav.pages{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 28px}
@@ -61,10 +65,10 @@
 </div>
 
 <h2>ダウンロード</h2>
-<ul>
-  <li>iOS版（App Store）: <a href="https://apps.apple.com/jp/app/id1286614810">https://apps.apple.com/jp/app/id1286614810</a></li>
-  <li>Android版（Google Play）: <a href="https://play.google.com/store/apps/details?id=com.ttrsato.pairgen">https://play.google.com/store/apps/details?id=com.ttrsato.pairgen</a></li>
-</ul>
+<p class="store-badges">
+  <a href="https://apps.apple.com/jp/app/id1286614810"><img class="apple" src="images/badge-appstore.svg" alt="App Store からダウンロード（iOS版）"></a>
+  <a href="https://play.google.com/store/apps/details?id=com.ttrsato.pairgen"><img class="google" src="images/badge-googleplay.png" alt="Google Play で手に入れよう（Android版）"></a>
+</p>
 <p>iOS版のヘルプはこちら: <a href="https://ttrsato.github.io/pairgen-help/home.html">https://ttrsato.github.io/pairgen-help/home.html</a></p>
 
 <h2>使い方動画</h2>
