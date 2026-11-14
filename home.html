@@ -42,7 +42,7 @@
 <body>
 
 <h1>くみあぷ（PairGen）</h1>
-<p><span class="badge">v1.2.30</span><span class="badge">対応 iOS v1.34.0</span></p>
+<p><span class="badge">v1.2.31</span><span class="badge">対応 iOS v1.35.0</span></p>
 <div class="note">⚠️ This help is available in Japanese only. Please use your browser's auto-translate feature.</div>
 <p>くみあぷ（PairGen）はバドミントン・テニスなどのダブルス競技向けに、組み合わせを自動生成する Android と iOS のアプリです。参加人数とコート数を設定するだけで、重複を最小限に抑えた組み合わせをすぐに生成できます。スコアの記録や結果のシェアのほか、Google ドライブを使った出欠管理との連動にも対応しています。</p>
 
@@ -152,14 +152,21 @@
   <li>試合結果メール本文は英語のみ（UI本体は多言語対応）</li>
 </ul>
 
-<h2>バージョン 1.2.30 更新内容（v1.2.29 からの変更点）</h2>
-<div class="note">✨ <strong>出欠を管理する Google スプレッドシートを公開しました。</strong>参加者が Web アプリで入力した出欠を管理できます。（<a href="attendance-overview.html">Google スプレッドシート連携</a>）</div>
+<h2>バージョン 1.2.31 更新内容（v1.2.30 からの変更点）</h2>
+<div class="note">✨ <strong>グループを読み込むとき、今のプレイヤーに「追加」できるようになりました。</strong>「入れ替え」と選び分けられます。（<a href="players-tab.html">プレイヤータブ</a>）</div>
 <ul>
-  <li>Google スプレッドシートの出欠を、プレイヤー一覧に取り込めるようになりました。グループ管理で「Google スプレッドシート」のアドレスを追加して、グループ読込で選ぶと直近のイベントの参加者が読み込まれます（iOS反映）</li>
+  <li>同じ名前のプレイヤーがいると、名前が紫色になり、⚠ マークが付くようになりました（iOS反映）</li>
+  <li>中身が空のスプレッドシートを読み込んでも、プレイヤー一覧が消えないようになりました（iOS反映）</li>
+  <li>ゲームポイントの最初の設定を 21 点から 15 点にしました。すでに設定している方は、そのままです（iOS反映）</li>
 </ul>
 
 <h2 id="web-version">Google スプレッドシート（出欠管理 Web アプリ）のバージョン</h2>
-<p>現在のバージョンは <strong>v1.0.0</strong>（最新）です。Web アプリのカレンダーの右下にも表示されます。確認のしかたと、新しい版が出たときの更新手順は、<a href="attendance-admin.html#version">管理者の作業の「13. Web アプリのバージョンを確認する」</a>を見てください。</p>
+<p>現在のバージョンは <strong>v1.1.0</strong>（最新）です。Web アプリのカレンダーの右下にも表示されます。確認のしかたと、新しい版が出たときの更新手順は、<a href="attendance-admin.html#version">管理者の作業の「13. Web アプリのバージョンを確認する」</a>を見てください。</p>
+<h3>v1.1.0 更新内容</h3>
+<ul>
+  <li>読み込みに時間がかかったときは、自動で 1 回やり直すようになりました</li>
+  <li>それでも読み込めないときは、「読み込めませんでした」と表示されるようになりました</li>
+</ul>
 <h3>v1.0.0 更新内容</h3>
 <ul>
   <li>最初の公開版です</li>
