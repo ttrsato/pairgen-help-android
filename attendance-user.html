@@ -59,6 +59,7 @@
   <li><a href="#app">1. くみあぷ（PairGen）にウェブアプリを登録する（管理者）</a></li>
   <li><a href="#web">2. 参加者の作業（Web アプリ）</a>
     <ul>
+      <li><a href="#web-open">Web アプリが開けないとき</a></li>
       <li><a href="#web-banner">画面上部の注意書きについて</a></li>
       <li><a href="#web-user">ユーザーを登録する</a></li>
       <li><a href="#web-event">イベントを登録する</a></li>
@@ -86,7 +87,7 @@
 </ol>
 <div class="ss phone"><img src="images/attendance-app-group.png" alt="グループ管理で Google スプレッドシートを選んだ画面"></div>
 <div class="note">URL は<code>https://</code> で始まるウェブアプリの URL です。3 つとも入力すると「追加」が押せるようになります。</div>
-<p>登録すると、「グループ」の一覧に、地球儀のアイコンが付いた<strong>青い下線付きの名前</strong>で表示されます。この名前をタップすると、登録した Web アプリが、端末の既定のブラウザで開きます。出欠を確認したいときや、イベントを登録したいときに、すぐ Web アプリへ移動できます。</p>
+<p>登録すると、「グループ」の一覧に、地球儀のアイコンが付いた<strong>青い下線付きの名前</strong>で表示されます。この名前をタップすると、「Web出欠 URL」のポップアップが開き、QR コードと URL が表示されます。URL をタップすると Web アプリがブラウザで開き、コピーボタンで URL をコピーできます。参加者に URL を伝えるときは、QR コードを見せるか、コピーして送ってください。</p>
 <div class="ss phone"><img src="images/attendance-app-group-list.png" alt="グループ管理の一覧。Google スプレッドシートのグループは下線付きの名前と地球儀のアイコンで表示される"></div>
 <div class="note">Web アプリを開くときに、READ_KEY は送られません。初回は「合言葉入力」の入力欄が出るので、管理者から教わった <code>ACCESS_KEY</code> を入れてください。</div>
 <div class="tip">スプレッドシートのグループには、プレイヤーを手動で登録することはできません。メンバーは、読み込むたびにスプレッドシートから作られます。</div>
@@ -102,6 +103,9 @@
   </a>
 </div>
 <p class="video-link"><a href="https://youtube.com/shorts/X8wDuFfiwlc">YouTube で見る</a></p>
+
+<h3 id="web-open">Web アプリが開けないとき</h3>
+<p>URL を開いても「現在、ファイルを開くことができません」（Google ドライブ）と表示されるときは、ブラウザのキャッシュと履歴を削除してから、開き直してください。アプリ側の故障ではありません。</p>
 
 <h3 id="web-banner">画面上部の「このアプリケーションは Google Apps Script のユーザーによって作成されたものです」について</h3>
 <p>Web アプリを開くと、画面の上に青い帯で次のように表示されます。</p>
